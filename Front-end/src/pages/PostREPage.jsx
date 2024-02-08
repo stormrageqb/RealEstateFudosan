@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 import Category from "../components/Category"
@@ -25,6 +25,12 @@ const PostREPage = () => {
     const [conditionData, setConditionData] = useState("");
     const [validationMessage, setValidationMessage] = useState('');
 
+    useEffect(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth' // Scroll smoothly to the top
+        });
+      }, [label]);
 
 const handlePrivacyDataArray = (data) => {
     setPrivacyDataArray(data);

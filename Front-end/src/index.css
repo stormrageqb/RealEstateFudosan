@@ -333,11 +333,11 @@ a, a:hover, a:focus {
   transition: 0.3s;
 }
 .rc-accordion-toggle.active{
-  background-color: #475f7b;
+  background-color: white;
+  opacity: 0.8;
 }
 .rc-accordion-toggle.active .rc-accordion-icon{
   transform: rotate(180deg);
-  color: #fff;
 }
 .rc-accordion-card{
   border: 1px solid #ddd;
@@ -352,9 +352,6 @@ a, a:hover, a:focus {
   font-weight: 500;
   font-size: 16px;
   transition: 0.3s;
-}
-.rc-accordion-toggle.active .rc-accordion-title{
-  color: #fff;
 }
 .rc-accordion-icon{
   position: relative;

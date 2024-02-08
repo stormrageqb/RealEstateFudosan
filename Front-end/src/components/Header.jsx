@@ -59,18 +59,20 @@ const Header = () => {
         <div className="w-full h-[60px] py-5 bg-[#32769b] box-border sticky top-0 z-[10000] noto-medium">
             <div className="max-w-[1600px] text-center my-0 mx-auto">
                 {/* <div className='text-[44px] leading-[10px] float-left text-white font-medium ml-[100px]'><Link to='/dashboard' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ふどうさん<span className='text-[28px] ml-2 font-medium'>市場</span></Link></div> */}
-                
+
                 <div className='float-right mr-[10px]'>
                     <div className=' inline-block text-[18px] leading-[40px] text-white px-3 cursor-pointer hover:text-black' onClick={() => history.push('/')}>ホームページ</div>
-                    <div className='relative inline-block' ref={postPageRef} onClick={handleTogglePost}>
-                        <div className=' inline-block text-[17px] leading-[40px] text-white px-3 cursor-pointer'>掲示板に投稿</div>
-                        <div className={`absolute top-[32px] left-[-40px] min-w-[200px] px-auto pt-3 bg-[#32769b] transition-all duration-300 ${postActive ? 'inline-block' : 'hidden'}`}>
-                            <div className=' text-[18px] py-3 text-white border-y border-y-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-building')}>建物を投稿する</div>
-                            <div className=' text-[17px] py-3 text-white border-b border-b-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-land')}>土地を投稿する</div>
-                            <div className=' text-[17px] py-3 text-white border-b border-b-white/50 cursor-pointer' onClick={() => history.push('/post-agent')}>エージェントの投稿</div>
+                    {
+                        isAdmin === false &&
+                        <div className='relative inline-block' ref={postPageRef} onClick={handleTogglePost}>
+                            <div className=' inline-block text-[17px] leading-[40px] text-white px-3 cursor-pointer'>掲示板に投稿</div>
+                            <div className={`absolute top-[32px] left-[-40px] min-w-[200px] px-auto pt-3 bg-[#32769b] transition-all duration-300 ${postActive ? 'inline-block' : 'hidden'}`}>
+                                <div className=' text-[18px] py-3 text-white border-y border-y-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-building')}>建物を投稿する</div>
+                                <div className=' text-[17px] py-3 text-white border-b border-b-white/50 no-underline transition-all duration-75 hover:text-white/40 cursor-pointer' onClick={() => handleRealEstatePostClicked('post-land')}>土地を投稿する</div>
+                                <div className=' text-[17px] py-3 text-white border-b border-b-white/50 cursor-pointer' onClick={() => history.push('/post-agent')}>エージェントの投稿</div>
+                            </div>
                         </div>
-                    </div>
-
+                    }
                     <div className=' inline-block text-[17px] leading-[40px] text-white px-3 cursor-pointer' onClick={() => history.push('/item-board')}>掲示板を見る</div>
 
                     {

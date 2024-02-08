@@ -55,25 +55,25 @@ const ApproveAgentModal = (props) => {
 
     return (
         <>
-            <div ref={modalRef} className='fixed bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2 flex flex-col items-center w-[450px] pt-10 bg-white rounded-xl noto-regular z-50'>
+            <div ref={modalRef} className='fixed bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2 flex flex-col items-center w-[550px] pt-10 bg-white rounded-xl noto-regular z-50'>
                 <div className='flex justify-center gap-6'>
                     <span className='text-xl'>{agent.agentName.lastNameGanji} {agent.agentName.firstNameGanji}</span>
                     <span className=' text-xl'>{agent.companyName}</span>
                 </div>
 
-                <div className='flex justify-center gap-5 mt-8'>
+                <div className='flex justify-center gap-10 mt-8'>
                     <span>{agent.address.province}</span>
                     <span>{agent.address.city}</span>
                     <span>{agent.address.street}</span>
                 </div>
 
-                <div className='flex justify-center mt-1 gap-7'>
+                <div className='flex justify-center mt-1 gap-8'>
                     <span>{agent.phoneNumber}</span>
                     <span>{agent.agentEmail}</span>
                 </div>
 
 
-                <span className='w-[420px] max-h-[400px] overflow-y-auto mx-auto p-3 text-sm mb-8 mt-4'>{agent.content}</span>
+                <span className='w-[480px] max-h-[600px] overflow-y-auto mx-auto p-3 text-sm mb-8 mt-4'>{agent.content}</span>
 
                 {/* <div className='flex w-[250px] h-[40px] justify-center items-center bg-[#2A6484] text-white text-lg noto-medium rounded-xl cursor-pointer mt-4 mb-2' onClick={() => handleContactPosterButtonClicked(agent._id)}>投稿者への連絡</div>
                 <div className='flex w-[250px] h-[40px] justify-center items-center text-[#2A6484] bg-white text-lg noto-medium rounded-xl cursor-pointer mb-5 border-[2px] border-[#2A6484]' onClick={handleApproveToggleBtnClicked}>{approved ? '掲示板に削除する' : '掲示板に投稿する'}</div> */}

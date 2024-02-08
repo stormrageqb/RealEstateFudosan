@@ -119,7 +119,7 @@ const PostAgentPage = () => {
             }, [cookies.user]); 
 
     return (
-        <div className='bg-[#F1F1F1]  pt-[124px]'>
+        <div className='bg-[#F1F1F1] py-[100px]'>
             <div className='container bg-white'>
                 <div>
                     <div>

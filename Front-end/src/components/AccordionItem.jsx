@@ -8,7 +8,7 @@ const AccordionItem = (props) => {
     return (
         <div className="rc-accordion-card">
                 <div className={`rc-accordion-toggle border-2 border-white pl-3 pr-8 py-4 relative ${active === id ? 'active' : ''}`} onClick={() => handleToggle(id)}>
-                    <p className={ `text-[28px] font-mono italic font font-medium    ${active === id ? 'text-white' : ''}`}>Q</p>
+                    <p className='text-[28px] font-mono italic font-semibold' >Q</p>
                     <h5 className=" rc-accordion-title absolute left-20 leading-5 max-w-[80%] noto-medium">{header}</h5>
                     <i className=" fa fa-chevron-down rc-accordion-icon"></i>
                 </div>
