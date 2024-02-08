@@ -427,6 +427,13 @@ exports.getRealEstateById = async (req, res) => {
     }
 }
 
+exports.getRealEstate = async (req, res) => {
+    let realestate = await RealEstate.find({});
+    res.json(realestate);
+
+}
+
+
 exports.getRealEstatesByIds = async (req, res) => {
 
     const favourites = req.body.favourites
