@@ -17,7 +17,7 @@ const MessageBoardPage = () => {
     const [active, setActive] = useState(1);
     const [activeCategory, setActiveCategory] = useState('all')
     const [messages, setMessages] = useState(null);
-    
+
     const [totalNumber, setTotalNumber] = useState();
 
     const activeHandler = (clickedPage) => {
@@ -26,7 +26,7 @@ const MessageBoardPage = () => {
     const handleMessageItemClicked = (props) => {
         const index = props;
         let opponentId;
-        if(messages[index].senderId !== myId) {
+        if (messages[index].senderId !== myId) {
             opponentId = messages[index].senderId;
         } else {
             opponentId = messages[index].receiverId;
@@ -41,7 +41,7 @@ const MessageBoardPage = () => {
         setActiveCategory(props);
     }
     const fetchData = async () => {
-        const firstNumber = ( active -1 ) * 12 + 1;
+        const firstNumber = (active - 1) * 12 + 1;
         const lastNumber = active * 12;
         try {
             const params = new URLSearchParams({
@@ -60,29 +60,32 @@ const MessageBoardPage = () => {
 
     useEffect(() => {
         fetchData();
-    },[active, activeCategory])
+    }, [active, activeCategory])
 
     useEffect(() => {
         setActive(1);
-    },[activeCategory])
+    }, [activeCategory])
 
-    if(messages === null) {
+    if (messages === null) {
         return (
-            <Loading/>
+            <Loading />
         )
     }
 
     return (
         <div className='flex flex-col items-center w-full py-20'>
             <p className='mb-10 noto-medium text-[24px] '>メッセージボックス</p>
-            <div>
-                <Pagination
-                    active={active}
-                    size={Math.ceil(totalNumber/12)}
-                    step={2}
-                    onClickHandler={activeHandler}
-                />
-            </div>
+            {
+                messages.length !== 0 &&
+                <div>
+                    <Pagination
+                        active={active}
+                        size={Math.ceil(totalNumber / 12)}
+                        step={2}
+                        onClickHandler={activeHandler}
+                    />
+                </div>
+            }
             <div className='flex justify-center gap-16 items-start'>
                 <div className='w-[200px] border-[1px] border-black noto-regular'>
                     <div className='p-2 bg-[#0D4868]/80 text-center text-white noto-bold'>メッセージボックス</div>
@@ -94,9 +97,13 @@ const MessageBoardPage = () => {
                     <div className={`text-center text-[16px] p-2 border-l-4 cursor-pointer ${activeCategory === 'sent' ? 'border-l-[#0D4868]' : 'border-l-[#0D4868]/30'}`} onClick={() => handleActiveCategorySelected('sent')}>すべて表示</div>
                 </div>
 
-                <div className='w-[1000px]'>
+                <div className='w-[1000px] min-h-[500px]'>
+                    {
+                        messages.length === 0 && 
+                        <div className='text-3xl noto-medium pt-[130px] pl-[180px]'>まだメッセージはありません</div>
+                    }
                     {messages.map((msg, index) => {
-                        return(
+                        return (
                             <div onClick={() => handleMessageItemClicked(index)}><AccordionItemMessage key={index} message={msg} /></div>
                         )
                     })}

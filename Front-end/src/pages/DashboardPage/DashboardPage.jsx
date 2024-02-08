@@ -9,7 +9,7 @@ import Loading from "../../components/Loading"
 
 const DashboardPage = () => {
 
-    const [realEstates, setRealEstates] = useState([]);
+    const [realEstates, setRealEstates] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,7 +28,7 @@ const DashboardPage = () => {
         fetchData();
     },[]);
 
-    if(realEstates.length  === 0) {
+    if(realEstates === null) {
         return (
             <div>
                 <Loading />

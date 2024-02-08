@@ -7,16 +7,16 @@ import GoogleMapComponent from '../components/GoogleMapComponent';
 import AgentCard from "../components/AgentCard"
 import { useCookies } from 'react-cookie';
 
-const myImage = 
+const myImage =
 {
-    "古民家":require("../assets/img/category/1.png"),
-    "マンション・ビル":require("../assets/img/category/2.png"),
-    "一戸建て":require("../assets/img/category/3.png"),
-    "店舗・倉庫・投資用物件":require("../assets/img/category/4.png"),
-    "原野":require("../assets/img/category/5.png"),
-    "林野":require("../assets/img/category/6.png"),
-    "農地":require("../assets/img/category/7.jpg"),
-    "住宅地":require("../assets/img/category/8.png"),
+    "古民家": require("../assets/img/category/1.png"),
+    "マンション・ビル": require("../assets/img/category/2.png"),
+    "一戸建て": require("../assets/img/category/3.png"),
+    "店舗・倉庫・投資用物件": require("../assets/img/category/4.png"),
+    "原野": require("../assets/img/category/5.png"),
+    "林野": require("../assets/img/category/6.png"),
+    "農地": require("../assets/img/category/7.jpg"),
+    "住宅地": require("../assets/img/category/8.png"),
 }
 
 const legions = {
@@ -38,18 +38,18 @@ const ItemBoardPage = () => {
     const [isAdmin, setIsAdmin] = useState();
     const [myId, setMyId] = useState()
     const [activeAgentCategory, setActiveAgentCategory] = useState('司法書士')
-    const [displayAgents, setDisplayAgents] = useState (false);
-    const [agents, setAgents] = useState ("");
+    const [displayAgents, setDisplayAgents] = useState(false);
+    const [agents, setAgents] = useState("");
 
     useEffect(() => {
         const fetchAgentData = async () => {
-            const response = await axios.get("/getAgent");   
+            const response = await axios.get("/getAgent");
             setAgents(response.data);
         }
         fetchAgentData();
-        if(cookies.token){setMyId(cookies.user._id)}
-        }, []);
-        
+        if (cookies.token) { setMyId(cookies.user._id) }
+    }, []);
+
     const goToItemListPageWithFilterContent = (e, params) => {
         const searchParams = new URLSearchParams();
         searchParams.set('filterContent', e.target.innerText);
@@ -64,7 +64,7 @@ const ItemBoardPage = () => {
         searchParams.set('filterContent', filterContent);
         history.push(`/item-list?${searchParams.toString()}`)
     }
-    
+
     const goToItemListPageWithLegion = (e) => {
         const searchParams = new URLSearchParams();
         searchParams.set('filterLabel', 'filterByLegion');
@@ -75,14 +75,14 @@ const ItemBoardPage = () => {
         const agentId = props.agentId;
         const posterId = props.posterId;
 
-        if(cookies.token) {
+        if (cookies.token) {
             if (isAdmin || posterId === myId) {
                 const searchParams = new URLSearchParams({
                     'agentId': agentId,
                     'posterId': posterId,
                 }).toString();
                 history.push(`/admin-contact-agent?${searchParams}`);
-            } else{
+            } else {
                 const searchParams = new URLSearchParams({
                     'previous-page': 'itemBoardPage',
                     'agentId': agentId,
@@ -99,12 +99,12 @@ const ItemBoardPage = () => {
     }
 
     return (
-        <div className={`flex justify-center relative bg-[#F1F1F1] pb-8 ${displayAgents? 'gap-20' : 'gap-40'}`}>
+        <div className={`flex justify-center relative bg-[#F1F1F1] pb-8 ${displayAgents ? 'gap-20' : 'gap-40'}`}>
             <div className='w-[480px] pt-[100px]'>
                 {Object.keys(myImage).map((key, i) => (
                     <div className='mb-[27px] ml-[45px] inline-block cursor-pointer' key={i}>
-                        <Category text={key} img={myImage[key]} onClick={(e) => goToItemListPageWithFilterContent(e,'filterByCategory')} alt={i} />
-                    </div>    
+                        <Category text={key} img={myImage[key]} onClick={(e) => goToItemListPageWithFilterContent(e, 'filterByCategory')} alt={i} />
+                    </div>
                 ))}
             </div>
             <div className='flex flex-col items-center'>
@@ -123,7 +123,7 @@ const ItemBoardPage = () => {
                                     {
                                         legions[legion].map((province, index) => (
                                             <span key={index} className='pr-[5px]'>{province}</span>
-                                    ))
+                                        ))
                                     }
                                 </div>
                             </div>
@@ -132,7 +132,7 @@ const ItemBoardPage = () => {
                     <div className='flex gap-[22px]'>
                         <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => goToItemListPageWithProvinceAddedFilterContent(e)}>沖繩</span>
                         <div onClick={(e) => goToItemListPageWithProvinceAddedFilterContent(e)} className=' cursor-pointer'>
-                            <span className='pr-[5px]'>沖繩</span>                                                                                                                                        
+                            <span className='pr-[5px]'>沖繩</span>
                         </div>
                     </div>
                 </div>
@@ -140,22 +140,22 @@ const ItemBoardPage = () => {
                     <GoogleMapComponent />
                 </div>
             </div>
-            <div className={`absolute top-32 right-32 text-[16px] noto-medium border-b-2 border-b-emerald-600 py-1 px-3 cursor-pointer ${displayAgents ? 'hidden' : 'block'}`} onClick={() => handleDisplayAgentsToggle(true)}><div className = 'pr-3 fa-solid fa-arrow-left'></div>エージェントを見る</div>
+            <div className={`absolute top-32 right-32 text-[16px] noto-medium border-b-2 border-b-emerald-600 py-1 px-3 cursor-pointer ${displayAgents ? 'hidden' : 'block'}`} onClick={() => handleDisplayAgentsToggle(true)}><div className='pr-3 fa-solid fa-arrow-left'></div>エージェントを見る</div>
             {
                 displayAgents &&
                 <div className='relative mt-4 mb-[24px] p-2  bg-white shadow-lg rounded-2xl'>
-                    <div className='absolute top-4 right-6 text-sm noto-bold cursor-pointer' onClick={() => handleDisplayAgentsToggle(false)}>隠れる<div className = 'pl-2 fa-solid fa-arrow-right'></div></div>
+                    <div className='absolute top-4 right-6 text-sm noto-bold cursor-pointer' onClick={() => handleDisplayAgentsToggle(false)}>隠れる<div className='pl-2 fa-solid fa-arrow-right'></div></div>
                     <div className='flex flex-col items-center w-[600px] h-[800px]  pt-[50px] pb-[55px] bg-white text-center  overflow-y-scroll no-scrollbar' >
                         <div className='flex relative border-b-2 pt-[2px] border-black w-[500px] noto-medium transition-all duration-300'>
                             <span className=' w-[33%] cursor-pointer pb-3' onClick={() => setActiveAgentCategory('不動産業者')}>不動産業者</span>
                             <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('司法書士')}>司法書士</span>
                             <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('投資家')}>投資家</span>
-                            <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === '不動産業者' ? 'left-0' : activeAgentCategory === '司法書士' ? 'left-[33.3%]' : 'left-[66.6%]' }`}></div>
+                            <div className={`absolute w-[33.3%] h-1 bottom-0 bg-[#f13f13] rounded-md transition-all duration-500 ${activeAgentCategory === '不動産業者' ? 'left-0' : activeAgentCategory === '司法書士' ? 'left-[33.3%]' : 'left-[66.6%]'}`}></div>
                         </div>
                         {agents.map((agent, index) => (
                             agent.category === activeAgentCategory &&
-                            <div className='pt-[25px]' onClick={() => agentCardClicked({agentId: agent._id, posterId: agent.posterId})}> 
-                                <AgentCard agent={agent} key={index} />                           
+                            <div className='pt-[25px]' onClick={() => agentCardClicked({ agentId: agent._id, posterId: agent.posterId })}>
+                                <AgentCard agent={agent} key={index} />
                             </div>
                         ))}
                     </div>

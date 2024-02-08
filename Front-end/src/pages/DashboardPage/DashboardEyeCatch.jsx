@@ -10,33 +10,63 @@ const eyecatches = [
   require("../../assets/city-water 1.jpg"),
 ];
 const DashboardEyeCatch = () => {
-    
-    const maxLength = eyecatches.length;
-    const [index, setIndex] = useState(0);
-  
-    useEffect(() => {
-      const timeoutId = setTimeout(() => setIndex((prevIndex) => (prevIndex + 1) % maxLength), 5000);
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }, [index]);
+
+  const maxLength = eyecatches.length;
+  const [index, setIndex] = useState(0);
+  const [mouseDown, setMouseDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+
+  const handleMouseDown = (event) => {
+    setMouseDown(true);
+    setStartX(event.clientX);
+  };
+
+  const handleMouseUp = () => {
+    setMouseDown(false);
+    setStartX(0);
+  };
+
+  const handleMouseMove = (event) => {
+    if (mouseDown) {
+      const moveX = event.clientX - startX;
+      const threshold = 50; // Adjust this value for sensitivity
+
+      if (moveX > threshold) {
+        setIndex((prevIndex) => (prevIndex === 0 ? maxLength - 1 : prevIndex - 1));
+        setMouseDown(false);
+      } else if (moveX < -threshold) {
+        setIndex((prevIndex) => (prevIndex + 1) % maxLength);
+        setMouseDown(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => setIndex((prevIndex) => (prevIndex + 1) % maxLength), 5000);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [index]);
 
 
-    return (
-        <div className="overflow-hidden w-full h-[900px]">
+  return (
+    <div className="overflow-hidden w-full h-[900px]"
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}>
+      <div
+        className="whitespace-nowrap transition ease duration-500"
+        style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
+        onMouseDown={handleMouseDown}
+      >
+        {eyecatches.map((eyecatch, index) => (
           <div
-            className="whitespace-nowrap transition ease duration-500"
-            style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
-          >
-            {eyecatches.map((eyecatch, index) => (
-              <div
-                className=" inline-block w-full h-[900px]"
-                key={index}
-              ><img src={eyecatch} alt="" className=' w-full h-full bg-center bg-cover' /></div>
-            ))}
-          </div>
+            className=" inline-block w-full h-[900px]"
+            key={index}
+          ><img src={eyecatch} alt="" className=' w-full h-full bg-center bg-cover' /></div>
+        ))}
+      </div>
 
-        </div>
-      );
+    </div>
+  );
 }
 export default DashboardEyeCatch;

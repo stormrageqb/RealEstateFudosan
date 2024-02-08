@@ -122,7 +122,7 @@ const ItemListPage = () => {
                         step={2}
                         onClickHandler={activeHandler}
                     />
-                    <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
+                    <i className="fa-solid fa-magnifying-glass text-[30px] cursor-pointer" onClick={magnifierToggleHandler}></i>
                 </div>
             }
             
@@ -162,7 +162,7 @@ const ItemListPage = () => {
             </div>
 
             {
-                realEstates.length !== 0 &&
+                realEstates.length > 8 &&
                 <div className='flex justify-center items-center gap-10 pb-16'>
                     <Pagination
                         active={active}
@@ -170,7 +170,7 @@ const ItemListPage = () => {
                         step={2}
                         onClickHandler={activeHandler}
                     />
-                    <i className="fa-solid fa-magnifying-glass text-[40px] cursor-pointer" onClick={magnifierToggleHandler}></i>
+                    <i className="fa-solid fa-magnifying-glass text-[35px] cursor-pointer" onClick={magnifierToggleHandler}></i>
                 </div>
             }
         </div>
