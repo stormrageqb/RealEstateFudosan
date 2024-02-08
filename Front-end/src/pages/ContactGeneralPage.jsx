@@ -14,8 +14,8 @@ const ContactGeneralPage = () => {
     const [cookies, setCookie] = useCookies();
     const [clientId, setClientId] = useState();
     const myId = cookies.user._id;
-    // const myName = cookies.user.name.lastNameGanji + ' ' + cookies.user.name.firstNameGanji;
-    // const isAdmin = cookies.user.isAdmin;
+    const myName = cookies.user.name.lastNameGanji + ' ' + cookies.user.name.firstNameGanji;
+    const isAdmin = cookies.user.isAdmin;
 
     const [content, setContent] = useState();
     const [contactMessages, setContactMessages] = useState([]);
@@ -26,8 +26,7 @@ const ContactGeneralPage = () => {
 
     const sendContactMessage = async () => {
         try {
-            // const category = isAdmin ? 'reply' : 'query';
-            const category = 'reply';
+            const category = isAdmin ? 'reply' : 'query';
             const payload = {
                 content: content,
                 clientId: myId,
@@ -45,11 +44,11 @@ const ContactGeneralPage = () => {
     const fetchContactMessages = async () => {
         try {
             let clientId;
-            // if(isAdmin) {
-            //     clientId = searchParams.get('clientId');
-            // } else {
-            //     clientId = myId;
-            // }
+            if(isAdmin) {
+                clientId = searchParams.get('clientId');
+            } else {
+                clientId = myId;
+            }
             clientId = myId;
             const params = new URLSearchParams({'clientId': clientId}).toString();
             const res = await axios.get(`/fetchGeneralContactMessages?${params}`);

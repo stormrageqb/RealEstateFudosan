@@ -41,7 +41,7 @@ const SignInPage = () => {
             if (cookies.token) {
                 handleLoginSuccess();
             }
-        }, 2000);
+        }, 20);
     })
 
     const handleNavigateToRegister = () => {

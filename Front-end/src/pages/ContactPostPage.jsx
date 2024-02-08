@@ -11,7 +11,7 @@ const ContactPostPage = () => {
     const textareaRef = useRef(null);
     const searchParams = new URLSearchParams(location.search);
     const realEstateId = searchParams.get('realEstateId');
-    // const isAdmin = cookies.user.isAdmin;
+    const isAdmin = cookies.user.isAdmin;
 
     const [realEstate, setRealEstate] = useState(null);
     const [contactMessages, setContactMessages] = useState(null);
@@ -33,12 +33,11 @@ const ContactPostPage = () => {
 
     const sendContactMessage = async () => {
         let category;
-        // if (isAdmin) {
-        //     category = 'reply'
-        // } {
-        //     category = 'query'
-        // }
-        category = 'query';
+        if (isAdmin) {
+            category = 'reply'
+        } {
+            category = 'query'
+        }
         const payload = {
             realEstateId: realEstateId,
             posterId: realEstate.poster,

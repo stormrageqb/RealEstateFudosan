@@ -42,12 +42,11 @@ const AdminContactAgentPage = () => {
 
     const sendContactMessage = async () => {
         let category;
-        // if (isAdmin) {
-        //     category = 'reply';
-        // } else {
-        //     category = 'query';
-        // }
-        category = 'query';
+        if (isAdmin) {
+            category = 'reply';
+        } else {
+            category = 'query';
+        }
         const payload = {
             category: category,
             clientId: agent.posterId,

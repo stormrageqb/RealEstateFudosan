@@ -332,7 +332,7 @@ a, a:hover, a:focus {
   transition: 0.3s;
 }
 .rc-accordion-toggle.active{
-  background-color: #5a8dee;
+  background-color: #475f7b;
 }
 .rc-accordion-toggle.active .rc-accordion-icon{
   transform: rotate(180deg);

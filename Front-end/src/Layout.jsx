@@ -27,11 +27,21 @@ import InputVerificationCodePage from "./pages/InputVerificationCodePage";
 import FeedbackPage from "./pages/FeedbackPage";
 import NotFoundPages from "./pages/404pages";
 import { useCookies } from "react-cookie";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect } from "react";
 
 const Layout = () => {
 
   const [cookies, setCookie] = useCookies();
   const token = cookies.token;
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Scroll smoothly to the top
+    });
+  }, [pathname]);
 
   return (
     <Switch>
