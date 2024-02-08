@@ -94,19 +94,27 @@ const PostAgentPage = () => {
                 }
             };
             useEffect(() => {
-                const func = async () => {
-                    
-                    const response = await axios.get("/getUser", {
-                        params: { _id: newId},
-                        });
-                        setEmail(response.data[0].email);
-                        setFirstNameGana(response.data[0].name.firstNameGana)
-                        setLastNameGana(response.data[0].name.lastNameGana)
-                        setFirstNameGanji(response.data[0].name.firstNameGanji)
-                        setLastNameGanji(response.data[0].name.lastNameGanji)
-                }
-                func();
-                }, []);
+                const fetchUserData = async () => {
+                    try {
+                        // Check if cookies.user exists and has _id property
+                        if (cookies.user && cookies.user._id) {
+                            const response = await axios.get("/getUser", {
+                                params: { _id: cookies.user._id },
+                            });
+        
+                            setEmail(response.data[0].email);
+                            setFirstNameGana(response.data[0].name.firstNameGana);
+                            setLastNameGana(response.data[0].name.lastNameGana);
+                            setFirstNameGanji(response.data[0].name.firstNameGanji);
+                            setLastNameGanji(response.data[0].name.lastNameGanji);
+                        }
+                    } catch (error) {
+                        console.error('Error fetching user data:', error);
+                    }
+                };
+        
+                fetchUserData();
+            }, [cookies.user]); 
 
     return (
         <div className='bg-[#F1F1F1]  pt-[124px]'>
