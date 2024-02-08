@@ -69,46 +69,54 @@ const PostAgentPage = () => {
         category: role, phoneNumber: newphoneNumber, companyName: companyName, content: content,
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setValidationMessage("");
-
-        if (!email.includes('@'))
-            return setValidationMessage("メールアドレスを正しく入力してください。");
-        // if(Math.abs(phoneNumber[0]).toString().trim().length > 3 || Math.abs(phoneNumber[0]).toString().trim().length < 2
-        //     || Math.abs(phoneNumber[1]).toString().trim().length > 4 || Math.abs(phoneNumber[1]).toString().trim().length < 2
-        //     || Math.abs(phoneNumber[2]).toString().trim().length !== 4 )
-        //     return setValidationMessage("電話番号を正確に入力してください！");
-        // if(Math.abs(postalNumber[0]).toString().trim().length !== 3 || Math.abs(postalNumber[1]).toString().trim().length !== 4 )
-        //     return setValidationMessage("郵便番号を正しく入力してください!");
-        try {
-            const formData = new FormData();
-            // Append other form data
-            formData.append('agentInfo', JSON.stringify(agentData));
-
-            for (const file of uploadDataArray) {
-                formData.append('images', file);
-            }
-            const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postAgent', formData)
-
-        } catch (error) {
-            console.error('Error sending form data:', error);
-        }
-    };
-    useEffect(() => {
-        const func = async () => {
-
-            const response = await axios.get("/getUser", {
-                params: { _id: newId },
-            });
-            setEmail(response.data[0].email);
-            setFirstNameGana(response.data[0].name.firstNameGana)
-            setLastNameGana(response.data[0].name.lastNameGana)
-            setFirstNameGanji(response.data[0].name.firstNameGanji)
-            setLastNameGanji(response.data[0].name.lastNameGanji)
-        }
-        func();
-    }, []);
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            setValidationMessage("");
+            
+            if(!email.includes('@'))
+                return setValidationMessage("メールアドレスを正しく入力してください。");
+            // if(Math.abs(phoneNumber[0]).toString().trim().length > 3 || Math.abs(phoneNumber[0]).toString().trim().length < 2
+            //     || Math.abs(phoneNumber[1]).toString().trim().length > 4 || Math.abs(phoneNumber[1]).toString().trim().length < 2
+            //     || Math.abs(phoneNumber[2]).toString().trim().length !== 4 )
+            //     return setValidationMessage("電話番号を正確に入力してください！");
+            // if(Math.abs(postalNumber[0]).toString().trim().length !== 3 || Math.abs(postalNumber[1]).toString().trim().length !== 4 )
+            //     return setValidationMessage("郵便番号を正しく入力してください!");
+            try {
+                const formData = new FormData();
+                    // Append other form data
+                    formData.append('agentInfo', JSON.stringify(agentData));
+                    
+                    for (const file of uploadDataArray) {
+                        formData.append('images', file);
+                    }
+                    const res = await axios.post(process.env.REACT_APP_API_BASE_URL + '/postAgent', formData)
+                    
+                } catch (error) {
+                console.error('Error sending form data:', error);
+                }
+            };
+            useEffect(() => {
+                const fetchUserData = async () => {
+                    try {
+                        // Check if cookies.user exists and has _id property
+                        if (cookies.user && cookies.user._id) {
+                            const response = await axios.get("/getUser", {
+                                params: { _id: cookies.user._id },
+                            });
+        
+                            setEmail(response.data[0].email);
+                            setFirstNameGana(response.data[0].name.firstNameGana);
+                            setLastNameGana(response.data[0].name.lastNameGana);
+                            setFirstNameGanji(response.data[0].name.firstNameGanji);
+                            setLastNameGanji(response.data[0].name.lastNameGanji);
+                        }
+                    } catch (error) {
+                        console.error('Error fetching user data:', error);
+                    }
+                };
+        
+                fetchUserData();
+            }, [cookies.user]); 
 
     return (
         <div className='bg-[#F1F1F1]  pt-[124px]'>

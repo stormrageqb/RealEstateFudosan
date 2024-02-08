@@ -44,6 +44,7 @@ router.get("/getAgent", postCtr.getAgent)
 router.get("/getAgentByAdmin", postCtr.getAgentByAdmin)
 router.get("/getAgentById", postCtr.getAgentById)
 
+router.get("/getRealEstate", realEstateCtr.getRealEstate)
 router.get("/getRealEstates", realEstateCtr.getRealEstates)
 router.get("/getRealEstateById", realEstateCtr.getRealEstateById)
 router.post("/getRealEstatesByIds", realEstateCtr.getRealEstatesByIds)

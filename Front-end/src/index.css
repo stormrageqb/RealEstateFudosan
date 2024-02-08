@@ -9,7 +9,7 @@
 @import url(https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css);
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 /* Noto Fonts */
 @font-face {
   font-family: 'Noto-Regular';
@@ -17,7 +17,7 @@
 }
 @font-face {
   font-family: 'Noto-Medium';
-  src: url('./assets/Font/Noto-medium.ttf') format('truetype');
+  src: url('./assets/Font/noto-sans-jp-japanese-500-normal.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Noto-Semibold';
@@ -29,7 +29,7 @@
 }
 
 /* Font Classes */
-.noto-regular{
+/* .noto-regular{
   font-family: 'Noto-Regular';
 }
 .noto-medium{
@@ -40,11 +40,12 @@
 }
 .noto-bold{
   font-family: 'Noto-Bold';
-}
+} */
 
 /* Root CSS */
 body {
-  font-family: "Poppins", sans-serif; 
+  font-family: 'Noto Sans JP', sans-serif;
+  
 }
 body::-webkit-scrollbar {
   display: none;
@@ -74,7 +75,7 @@ td{
   content: "";
   width: 60px;
   height: 30px;
-  background-color: #F1F1F1;
+  background-color: white;
   position: absolute;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   transform: rotate(-90deg);
@@ -414,6 +415,19 @@ input:checked {
 input:checked ~ span:last-child {
   transform: translateX(100%); /* translate-x-7 */
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number]
+{
+  -moz-appearance: textfield;
+}
+
 
 @keyframes spin {
   0% {
