@@ -339,9 +339,6 @@ a, a:hover, a:focus {
   margin-bottom: 10px;
   overflow: hidden;
 }
-.rc-accordion-card:last-child{
-  margin-bottom: 0;
-}
 .rc-accordion-title{
   font-weight: 500;
   font-size: 16px;
@@ -362,8 +359,6 @@ a, a:hover, a:focus {
   background: white;
 }
 .rc-accordion-body p{
-
-
   /* color: #727E8C; */
 }
 .rc-collapse{

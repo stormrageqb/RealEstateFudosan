@@ -131,7 +131,7 @@ const DashboardFAQPage = () => {
     return (
         <div className=' flex flex-col items-center justify-center w-full mt-20 py-20 bg-[#32769b]'>
             <div className='mt-10 mb-20 text-4xl text-white font-medium'>よくある質問</div>
-            <div className='flex flex-col gap-2 w-[60%]'>
+            <div className='flex flex-col gap-2 xl:w-[60%] lg:w-[75%] w-[90%]'>
                 {faqs.map((faq, index) => {
                     return (
                             <AccordionItem key={index} active={active} handleToggle={handleToggle} faq={faq} />

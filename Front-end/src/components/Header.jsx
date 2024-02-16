@@ -56,7 +56,7 @@ const Header = () => {
         }
     }, [cookies.token])
     return (
-        <div className="w-full h-[60px] py-5 bg-[#32769b] box-border sticky top-0 z-[10000] font-medium">
+        <div className="hidden sm:block w-full h-[60px] py-5 bg-[#32769b] box-border sticky top-0 z-[10000] font-medium">
             <div className="max-w-[1600px] text-center my-0 mx-auto">
                 {/* <div className='text-[44px] leading-[10px] float-left text-white font-medium ml-[100px]'><Link to='/dashboard' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ふどうさん<span className='text-[28px] ml-2 font-medium'>市場</span></Link></div> */}
 
@@ -102,7 +102,7 @@ const Header = () => {
                                     </div>
                                 </div>
                     }
-                    <div className=' inline-block text-[18px] leading-[40px] text-white px-3 cursor-pointer' onClick={() => history.push('/faq')}>ふどうさんは</div>
+                    <div className=' inline-block text-[18px] leading-[40px] text-white px-3 cursor-pointer' onClick={() => history.push('/faq')}>よくある質問</div>
                 </div>
             </div>
         </div>

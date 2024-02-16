@@ -50,7 +50,7 @@ const DashboardEyeCatch = () => {
 
 
   return (
-    <div className="overflow-hidden w-full h-[900px]"
+    <div className="overflow-hidden w-full h-[700px] sm:h-[900px]"
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}>
       <div
