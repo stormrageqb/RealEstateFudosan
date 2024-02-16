@@ -26,6 +26,9 @@ import AdminContactAgentPage from "./pages/AdminContactaAgentPage";
 import InputVerificationCodePage from "./pages/InputVerificationCodePage";
 import FeedbackPage from "./pages/FeedbackPage";
 import NotFoundPages from "./pages/404pages";
+import AdminGeneralContactBoardPage from "./pages/AdminGeneralContactBoardPage"
+import AdminPostContactBoardPage from "./pages/AdminPostContactBoardPage";
+
 import { useCookies } from "react-cookie";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect } from "react";
@@ -71,6 +74,8 @@ const Layout = () => {
         <Route exact path="/admin-approve-realestate-detail" component={AdminApproveRealEstateDetail} />
         <Route exact path="/admin-view-agent" component={AdminViewAgentPage} />
         <Route exact path="/admin-contact-agent" component={AdminContactAgentPage} />
+        <Route exact path="/admin-general-contact-board" component={AdminGeneralContactBoardPage} />
+        <Route exact path="/admin-post-contact-board" component={AdminPostContactBoardPage} />
         
         <Route exact path="*" component={NotFoundPages} />
 

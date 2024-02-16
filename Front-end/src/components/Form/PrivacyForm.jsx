@@ -18,15 +18,8 @@ export default function PrivacyForm( props ) {
     const [firstNameGanji, setFirstNameGanji] = useState('');
     const [lastNameGanji, setLastNameGanji] = useState('');
 
-    const tempCity = 'Shibuya-ku'
-    const tempStreet = 'Hommachi 2 choume, 4-7';
-    const tempBuilding = 'Sunny Mansion 203';
-
-
-    
     useEffect(() => {
-        
-                
+
         const privacyDataArray = {province:province, city: city, buildingName: buildingName, street: street, phoneNumber: phoneNumber, 
                                     postalNumber: postalNumber, email: email, age: age, firstNameGana: firstNameGana, lastNameGana: lastNameGana, 
                                     firstNameGanji: firstNameGanji, lastNameGanji: lastNameGanji} 
@@ -205,10 +198,10 @@ return (
                         <option className="text-[16px]"  value="宮崎県" >&nbsp;宮崎県</option>
                         <option className="text-[16px]"  value="鹿児島県" >&nbsp;鹿児島県</option>
                         <option className="text-[16px]"  value="沖縄県" >&nbsp;沖縄県</option>
-                        <option className="text-[16px]"  value="豪州" >&nbsp;豪州</option>
+                        {/* <option className="text-[16px]"  value="豪州" >&nbsp;豪州</option>
                         <option className="text-[16px]"  value="北米" >&nbsp;北米</option>
                         <option className="text-[16px]"  value="欧州" >&nbsp;欧州</option>
-                        <option className="text-[16px]"  value="アジア" >&nbsp;アジア</option>
+                        <option className="text-[16px]"  value="アジア" >&nbsp;アジア</option> */}
 
                     </select>
                     
@@ -218,21 +211,21 @@ return (
         <div className=' w-[745px]  flex gap-[124px] pt-[24px] justify-end'>            
             <div className=" flex items-center justify-between ">
                     <p className="text-[20px] ">市区町村</p>
-                    <input placeholder="例:町名番地" required = {true} type='text' value={tempCity} className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setCity(e.target.value)}/>
+                    <input placeholder="例:町名番地" required = {true} type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setCity(e.target.value)}/>
             </div>
         </div>
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px] justify-end'>            
             <div className=" flex items-center justify-between ">
                     <p className="text-[20px] ">町名番地</p>
-                    <input placeholder="例:6 Chome-19-19 Futsukaichikita" required = {true} type='text' value={tempStreet} className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setStreet(e.target.value)}/>
+                    <input placeholder="例:6 Chome-19-19 Futsukaichikita" required = {true} type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]" onChange={(e) => setStreet(e.target.value)}/>
             </div>
         </div>
 
         <div className=' w-[745px]  flex gap-[124px] pt-[24px] justify-end'>            
             <div className=" flex items-center justify-between ">
                     <p className="text-[20px] ">建物名-部屋番号</p>
-                    <input type='text' value={tempBuilding} className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[22px]" onChange={(e) => setBuildingName(e.target.value)}/>
+                    <input type='text' className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[22px]" onChange={(e) => setBuildingName(e.target.value)}/>
             </div>
         </div>
 

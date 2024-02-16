@@ -4,6 +4,7 @@ const Agent = require('../models/agentsModel')
 const Feedback = require('../models/feedbackModel')
 
 const createRealEstate = async (req, res) => {
+  console.log('I am here==============================')
   
   try {
     const {
@@ -47,15 +48,14 @@ const createRealEstate = async (req, res) => {
           })
           post = postTemp;
         }
-  
-    
+   
 
     // Save the post to the database
     await post.save();
 
     return res.status(200).json({ message: 'Post created successfully'});
   } catch (error) {
-    
+    console.log(error);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 };

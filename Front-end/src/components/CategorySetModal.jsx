@@ -32,8 +32,8 @@ const CategorySetModal = (props) => {
 
     return(
         <>
-        <div ref={modalRef} className='fixed bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/3 flex flex-col items-center w-[450px] pt-16 bg-white rounded-xl noto-regular z-50'>
-            <span className='text-2xl noto-medium'>カテゴリーを選択してください。</span>
+        <div ref={modalRef} className='fixed bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/3 flex flex-col items-center w-[450px] pt-16 bg-white rounded-xl font-normal z-50'>
+            <span className='text-2xl font-medium'>カテゴリーを選択してください。</span>
             <div className='flex justify-center pt-12 gap-7'>
                 <div className=" flex items-center justify-center">
                         <select
@@ -52,7 +52,7 @@ const CategorySetModal = (props) => {
                         </select>
                 </div>
             </div>
-            <div className='flex w-[250px]  h-[50px] justify-center items-center bg-[#2A6484] text-white text-lg noto-medium rounded-xl cursor-pointer mt-8 mb-[40px]' onClick={makeApproveRequest} >掲示板に投稿する</div>
+            <div className='flex w-[250px]  h-[50px] justify-center items-center bg-[#2A6484] text-white text-lg font-medium rounded-xl cursor-pointer mt-8 mb-[40px]' onClick={makeApproveRequest} >掲示板に投稿する</div>
         </div>
         <div className='opacity-75 bg-black fixed inset-0 z-40'></div>
         </>

@@ -66,17 +66,17 @@ const SearchBoard = ( props ) => {
     }
 
     return(
-        <div className="z-10 noto-regular">
+        <div className="z-10 font-normal">
             <div className="w-[355px] shadow-2xl border-2 border-black/40 rounded-xl" id="search">
                 <div className="flex justify-end">
                     <i className=" fa-solid fa-x text-lg pr-[30px] pt-[24px] cursor-pointer" onClick={closenav}></i>
                 </div>
                 <div className="flex">
                     <i className="fa-solid fa-magnifying-glass text-2xl pl-[42px] pt-[4px]"></i>
-                    <p className="text-[24px] pl-[18px] noto-medium flex items-center">マイサーチ</p>
+                    <p className="text-[24px] pl-[18px] font-medium flex items-center">マイサーチ</p>
                 </div>
                 <div className="pt-8 flex items-center justify-between pr-14">
-                    <p className="text-sm noto-medium pl-9 ">表示順番</p>
+                    <p className="text-sm font-medium pl-9 ">表示順番</p>
                     <select
                         className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
                         
@@ -91,9 +91,9 @@ const SearchBoard = ( props ) => {
                         <option className="text-[16px]"  value="高い順" >&nbsp;高い順</option>
                     </select>
                 </div>
-                    <p className=" text-base noto-medium mx-auto pl-[35%] pt-6 pb-3">絞込み検索</p>
+                    <p className=" text-base font-medium mx-auto pl-[35%] pt-6 pb-3">絞込み検索</p>
                     <div className="pt-[16px] flex items-center justify-between pr-14">
-                        <p className="text-sm noto-medium pl-9 ">価格未定物件</p>
+                        <p className="text-sm font-medium pl-9 ">価格未定物件</p>
                         <select
                             className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]"
                             
@@ -104,15 +104,15 @@ const SearchBoard = ( props ) => {
                         </select>
                     </div>
                     <div className="pt-[16px] flex items-center justify-between pr-14">
-                        <p className="text-sm noto-medium pl-9 ">価格上限</p>
+                        <p className="text-sm font-medium pl-9 ">価格上限</p>
                         <input className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]" ref={ceilBudgetRef} placeholder="万円" type="text" />
                     </div>
                     <div className="pt-[16px] flex items-center justify-between pr-14">
-                        <p className="text-sm noto-medium pl-9 ">価格下限</p>
+                        <p className="text-sm font-medium pl-9 ">価格下限</p>
                         <input className="border-[1px] outline-none focus:border-blue-500 p-1 rounded-md border-black w-[145px]" ref={floorBudgetRef} placeholder="万円" type="text" />
                     </div>
                     <div className="flex justify-center pt-8">
-                        <button className="border border-black rounded-md p-2 text-sm noto-medium" onClick={cancelSearchMode} >入力内容をリセットする</button>
+                        <button className="border border-black rounded-md p-2 text-sm font-medium" onClick={cancelSearchMode} >入力内容をリセットする</button>
                     </div>
                     <div className="flex justify-center pt-8 pb-20">
                         <button className=" bg-[#2A6484]  rounded-xl py-[12px] px-[47px] text-[16px] text-white " onClick={handleSaveAndDisplayBtnClicked}>設定を保存/表示する</button>

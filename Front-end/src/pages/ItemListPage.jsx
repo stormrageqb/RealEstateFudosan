@@ -112,7 +112,7 @@ const ItemListPage = () => {
     
     return (
         <div className='flex flex-col items-center pt-20'>
-            <p className='noto-medium text-[36px]' >{filterContent}</p>
+            <p className='font-medium text-[36px]' >{filterContent}</p>
             {
                 realEstates.length !== 0 &&
                 <div className='flex justify-center items-center gap-10 mt-16'>            
@@ -157,7 +157,7 @@ const ItemListPage = () => {
                 </div>
                 {
                     realEstates.length === 0 &&
-                    <div className='pt-[100px] text-3xl noto-medium'>{filterContent}の不動産はありません。</div>
+                    <div className='pt-[100px] text-3xl font-medium'>{filterContent}の不動産はありません。</div>
                 }
             </div>
 

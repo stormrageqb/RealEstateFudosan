@@ -8,12 +8,6 @@ const [buildingCoverageRatio, setBuildingCoverageRatio] = useState('');
 const [floorAreaRatio, setFloorAreaRatio] = useState('');
 const [structure, setStructure] = useState('');
 
-    const tempPrice = 2000; 
-    const tempLandArea = 300;
-    const tempBuildingRatio = 50;
-    const tempFloorRatio = 50;
-    const tempStructure = '市街化区域';
-
 useEffect(()=>{
     const overviewHouseDataArray = {budget: budget, landarea: landarea, buildingCoverageRatio: buildingCoverageRatio, floorAreaRatio: floorAreaRatio, structure: structure};
     props.onDataArrayFromChild(overviewHouseDataArray);
@@ -29,7 +23,7 @@ return (
         </div>
         <div className='flex'>
             <span className='text-[20px] pr-10'>希望価格</span>
-            <input type="number" placeholder='万円' value={tempPrice} className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBudget(e.target.value)}/>
+            <input type="number" placeholder='万円' className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBudget(e.target.value)}/>
         </div>
     </div>
 
@@ -37,7 +31,7 @@ return (
         
         <div className='flex'>
             <span className='text-[20px] pr-10'>土地面積</span>
-            <input type="number" placeholder='m²' value={tempLandArea}  className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setLandarea(e.target.value)}/>
+            <input type="number" placeholder='m²'  className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setLandarea(e.target.value)}/>
         </div>
     </div>
 
@@ -45,7 +39,7 @@ return (
         
         <div className='flex'>
             <span className='text-[20px] pr-[60px]'>乾閉率</span>
-            <input type="number" placeholder='%' value={tempBuildingRatio} className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBuildingCoverageRatio(e.target.value)}/>
+            <input type="number" placeholder='%' className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setBuildingCoverageRatio(e.target.value)}/>
         </div>
     </div>
     
@@ -53,7 +47,7 @@ return (
         
         <div className='flex'>
             <span className='text-[20px] pr-[60px]'>容積率</span>
-            <input type="number" placeholder='%' value={tempFloorRatio} className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setFloorAreaRatio(e.target.value)}/>
+            <input type="number" placeholder='%' className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setFloorAreaRatio(e.target.value)}/>
         </div>
     </div>
 
@@ -63,7 +57,7 @@ return (
         
         <div className='flex'>
             <span className='text-[20px] pr-20'>構造</span>
-            <input type="text" placeholder='木造平屋' value={tempStructure}  className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setStructure(e.target.value)}/>
+            <input type="text" placeholder='木造平屋'  className='w-[381px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md' onChange={(e) => setStructure(e.target.value)}/>
         </div>
     </div> 
     

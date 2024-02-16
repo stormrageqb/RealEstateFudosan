@@ -104,12 +104,12 @@ const AdminApproveRealEstateDetail = () => {
                     realEstate.label === 'land' && <BasicTableLand tableData = {realEstate.basicInfoLand} fontSize = {"text-[24px]"} width = {"w-[500px]"}  />
                 }             
             </div>
-            <p className='w-[90%] mx-auto noto-medium text-xl'>{realEstate.briefDescription}</p>
-            <div className='border-2 border-[#2A6484]/40 text-base noto-medium mt-10 py-3 px-2'>{realEstate.fullDescription}</div>
+            <p className='w-[90%] mx-auto font-medium text-xl'>{realEstate.briefDescription}</p>
+            <div className='border-2 border-[#2A6484]/40 text-base font-medium mt-10 py-3 px-2'>{realEstate.fullDescription}</div>
 
             <div className='flex justify-center gap-[50px] w-full mt-20'>
-                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] noto-medium rounded-xl cursor-pointer' onClick={handleContactPosterButtonClicked}>投稿者への連絡</div>
-                <div className='flex w-[380px] h-[80px] justify-center items-center text-[#2A6484] bg-white text-[24px] noto-medium rounded-xl cursor-pointer border-[2px] border-[#2A6484]' onClick={handleApproveToggleBtnClicked}>{approveBtnContent}</div>
+                <div className='flex w-[380px] h-[80px] justify-center items-center bg-[#2A6484] text-white text-[24px] font-medium rounded-xl cursor-pointer' onClick={handleContactPosterButtonClicked}>投稿者への連絡</div>
+                <div className='flex w-[380px] h-[80px] justify-center items-center text-[#2A6484] bg-white text-[24px] font-medium rounded-xl cursor-pointer border-[2px] border-[#2A6484]' onClick={handleApproveToggleBtnClicked}>{approveBtnContent}</div>
             </div>
         </div>
         {

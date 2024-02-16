@@ -261,11 +261,11 @@ const DashboardFeedbackBoard = () => {
     }
     return (
         <div className='w-full py-20'>
-            <div className='text-center text-[32px] noto-semibold'>みんなの感想文</div>
+            <div className='text-center text-[32px] font-semibold'>みんなの感想文</div>
             <div className='flex flex-col gap-5 mx-auto w-[1250px] mt-7'>
                 <div className='flex justify-between text-[16px] font-normal px-[10px]'>
-                    <span className='noto-medium'>売りました体験談</span>
-                    <span className='text-[20px] noto-medium cursor-pointer border-b-2 border-b-black' onClick={() => handleViewMoreClicked('sold')}>もっと見る<div className = 'pl-2 fa-solid fa-arrow-right'></div></span>
+                    <span className='font-medium'>売りました体験談</span>
+                    <span className='text-[20px] font-medium cursor-pointer border-b-2 border-b-black' onClick={() => handleViewMoreClicked('sold')}>もっと見る<div className = 'pl-2 fa-solid fa-arrow-right'></div></span>
                 </div>
                 <div className='flex justify-between'>
                     {
@@ -280,8 +280,8 @@ const DashboardFeedbackBoard = () => {
                     }
                 </div>
                 <div className='flex justify-between text-[16px] font-normal px-[10px] mt-[30px]'>
-                    <span className='noto-medium'>こんな風に使ってます</span>
-                    <span className='text-[20px] noto-medium cursor-pointer border-b-2 border-b-black' onClick={() => handleViewMoreClicked('bought')}>もっと見る<div className = 'pl-2 fa-solid fa-arrow-right'></div></span>
+                    <span className='font-medium'>こんな風に使ってます</span>
+                    <span className='text-[20px] font-medium cursor-pointer border-b-2 border-b-black' onClick={() => handleViewMoreClicked('bought')}>もっと見る<div className = 'pl-2 fa-solid fa-arrow-right'></div></span>
                 </div>
                 <div className='flex justify-between'>
                     {

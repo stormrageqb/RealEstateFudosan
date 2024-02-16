@@ -45,7 +45,7 @@ const ItemMyPage = () => {
             <div className='flex flex-col items-center min-h-[500px]'>
                 {
                     realEstates.length === 0 &&
-                    <div className='noto-medium text-3xl mt-[50px]'>まだ投稿がありません</div>
+                    <div className='font-medium text-3xl mt-[50px]'>まだ投稿がありません</div>
                 }
                 {
                     realEstates.map((realEstate, index) => {

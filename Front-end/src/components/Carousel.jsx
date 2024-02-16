@@ -30,35 +30,31 @@ const Carousel = (props) => {
         new Glide('.glide', config).mount();
     }, []);
 
-    const myArray = [
-        require("../assets/img/carousel/1.jpg"),
-        require("../assets/img/carousel/2.jpg"),
-        require("../assets/img/carousel/3.jpg"),
-        require("../assets/img/carousel/4.jpg"),
-        require("../assets/img/carousel/5.jpg")
-    ];
     return (
         <div className="glide flex items-center justify-center w-full h-[350px] bg-[#ECECEC] mt-0">
             <div className="glide__track w-[90%] pl-[30px]" data-glide-el="track">
                 <ul className="glide__slides">
-                    {images.map((image, index) => (
-                        <li key={index} className="glide__slide">
-                            <img src={image} alt={`Slide ${index + 1}`} className="w-[350px] h-[250px]" />
-                        </li>
-                    ))}
+                    {images.map((image, index) => {
+                        const imageUrl = image.replace('../../../Back-end/uploads/', '');
+                        return (
+                            <li key={index} className="glide__slide">
+                                <img src={process.env.REACT_APP_API_BASE_URL + '/downloads/?filename='+imageUrl} alt={`Slide ${index + 1}`} className="w-[350px] h-[250px]" />
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
             <div className="glide__arrows" data-glide-el="controls">
                 <button className="absolute glide__arrow--left left-6 bottom-1/2 transform translate-y-1/2" data-glide-dir="<">
                     <div className=" flex justify-center items-center my-auto ">
-                        <FaChevronLeft className="text-black text-[40px]"/>
+                        <FaChevronLeft className="text-black text-[40px]" />
                         {/* <i className="fa-solid fa-circle-left text-white text-2xl"></i> */}
                     </div>
                 </button>
                 <button className="absolute glide__arrow--right right-6 bottom-1/2 transform translate-y-1/2" data-glide-dir=">">
                     <div className="h-9 w-9 flex justify-center items-center my-auto ">
                         {/* <i className="fa-solid fa-circle-right text-white text-2xl"></i> */}
-                        <FaChevronRight className="text-black text-[40px]"/>
+                        <FaChevronRight className="text-black text-[40px]" />
                     </div>
                 </button>
             </div>

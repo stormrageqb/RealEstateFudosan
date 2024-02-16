@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to TODO Node.js application backend." });
 });
 
-
+app.use(`${process.env.APP_BASE_URL}/downloads`, express.static(path.resolve(__dirname)+'/uploads'));
 
 app.use(errorHandler);
 

@@ -12,7 +12,7 @@ const FeedbackCard = (props) => {
                 <img src={image} alt='photo' className="w-[220px] " />
             </div>
             <div className="px-4 pt-1 text-center text-[11px] overflow-hidden line-clamp-5">
-                <p className="noto-regular">{fullComment}</p>
+                <p className="font-normal">{fullComment}</p>
             </div>
         </div>
     )

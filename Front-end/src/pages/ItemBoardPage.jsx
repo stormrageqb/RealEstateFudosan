@@ -119,7 +119,7 @@ const ItemBoardPage = () => {
                 ))}
             </div>
             <div className='flex flex-col items-center'>
-                <div className='pt-[60px] noto-medium' >
+                <div className='pt-[60px] font-medium' >
                     <div className='flex gap-[22px]'>
                         <span className="text-[#02540A] w-[48px] pb-[10px] cursor-pointer" onClick={(e) => goToItemListPageWithFilterContent(e, 'filterByProvince')}>北海道</span>
                         <div onClick={(e) => goToItemListPageWithFilterContent(e, 'filterByProvince')} className=' cursor-pointer'>
@@ -151,13 +151,13 @@ const ItemBoardPage = () => {
                     <GoogleMapComponent newAddress={newAddress} zoom={4} />
                 </div>
             </div>
-            <div className={`absolute top-32 right-32 text-[16px] noto-medium border-b-2 border-b-emerald-600 py-1 px-3 cursor-pointer ${displayAgents ? 'hidden' : 'block'}`} onClick={() => handleDisplayAgentsToggle(true)}><div className='pr-3 fa-solid fa-arrow-left'></div>エージェントを見る</div>
+            <div className={`absolute top-32 right-32 text-[16px] font-medium border-b-2 border-b-emerald-600 py-1 px-3 cursor-pointer ${displayAgents ? 'hidden' : 'block'}`} onClick={() => handleDisplayAgentsToggle(true)}><div className='pr-3 fa-solid fa-arrow-left'></div>エージェントを見る</div>
             {
                 displayAgents &&
                 <div className='relative mt-4 mb-[24px] p-2  bg-white shadow-lg rounded-2xl'>
-                    <div className='absolute top-4 right-6 text-sm noto-bold cursor-pointer' onClick={() => handleDisplayAgentsToggle(false)}>隠れる<div className='pl-2 fa-solid fa-arrow-right'></div></div>
+                    <div className='absolute top-4 right-6 text-sm font-bold cursor-pointer' onClick={() => handleDisplayAgentsToggle(false)}>隠れる<div className='pl-2 fa-solid fa-arrow-right'></div></div>
                     <div className='flex flex-col items-center w-[600px] h-[800px]  pt-[50px] pb-[55px] bg-white text-center  overflow-y-scroll no-scrollbar' >
-                        <div className='flex relative border-b-2 pt-[2px] border-black w-[500px] noto-medium transition-all duration-300'>
+                        <div className='flex relative border-b-2 pt-[2px] border-black w-[500px] font-medium transition-all duration-300'>
                             <span className=' w-[33%] cursor-pointer pb-3' onClick={() => setActiveAgentCategory('不動産業者')}>不動産業者</span>
                             <span className=' w-[34%] cursor-pointer' onClick={() => setActiveAgentCategory('司法書士')}>司法書士</span>
                             <span className=' w-[33%] cursor-pointer' onClick={() => setActiveAgentCategory('投資家')}>投資家</span>

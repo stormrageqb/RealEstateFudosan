@@ -6,6 +6,7 @@ const realEstateCtr = require('../controllers/realEstateCtr')
 const messageCtr = require('../controllers/messageCtr')
 const favouriteCtr = require('../controllers/favouriteCtr')
 const adminCtr = require('../controllers/adminCtr')
+const imageCtr = require('../controllers/imageCtr')
 
 const multer = require('multer');
 
@@ -67,5 +68,8 @@ router.post("/saveGeneralContactMessage", adminCtr.saveGeneralContactMessage);
 router.get("/fetchGeneralContactMessages", adminCtr.fetchGeneralContactMessages);
 router.post("/savePostContactMessage", adminCtr.savePostContactMessage);
 router.get("/fetchPostContactMessages", adminCtr.fetchPostContactMessages);
+router.get("/fetchContactMessagesByAdmin", adminCtr.fetchContactMessagesByAdmin);
+router.get("/fetchPostContactMessagesByAdmin", adminCtr.fetchPostContactMessagesByAdmin);
 
+router.get("/downloads", imageCtr.getImage);
 module.exports = router;

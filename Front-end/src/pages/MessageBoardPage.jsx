@@ -74,7 +74,7 @@ const MessageBoardPage = () => {
 
     return (
         <div className='flex flex-col items-center w-full py-20'>
-            <p className='mb-10 noto-medium text-[24px] '>メッセージボックス</p>
+            <p className='mb-10 font-medium text-[24px] '>メッセージボックス</p>
             {
                 messages.length !== 0 &&
                 <div>
@@ -87,8 +87,8 @@ const MessageBoardPage = () => {
                 </div>
             }
             <div className='flex justify-center gap-16 items-start'>
-                <div className='w-[200px] border-[1px] border-black noto-regular'>
-                    <div className='p-2 bg-[#0D4868]/80 text-center text-white noto-bold'>メッセージボックス</div>
+                <div className='w-[200px] border-[1px] border-black font-normal'>
+                    <div className='p-2 bg-[#0D4868]/80 text-center text-white font-bold'>メッセージボックス</div>
                     <div className={`text-center text-[16px] border-b-[1px] border-l-4  border-black p-2 cursor-pointer ${activeCategory === 'all' ? 'border-l-[#0D4868]' : 'border-l-[#0D4868]/30'}`} onClick={() => handleActiveCategorySelected('all')}>すべて表示</div>
                     <div className='text-[18px] py-2 pl-3 border-b-[1px] border-b-black/30 bg-[#F2ECCD]/40'>受信箱</div>
                     <div className={`text-center text-[16px] p-2 border-b-[1px] border-b-black/30 border-l-4 cursor-pointer ${activeCategory === 'received-all' ? 'border-l-[#0D4868]' : 'border-l-[#0D4868]/30'}`} onClick={() => handleActiveCategorySelected('received-all')}>すべて表示</div>
@@ -100,7 +100,7 @@ const MessageBoardPage = () => {
                 <div className='w-[1000px] min-h-[500px]'>
                     {
                         messages.length === 0 && 
-                        <div className='text-3xl noto-medium pt-[130px] pl-[180px]'>まだメッセージはありません</div>
+                        <div className='text-3xl font-medium pt-[130px] pl-[180px]'>まだメッセージはありません</div>
                     }
                     {messages.map((msg, index) => {
                         return (

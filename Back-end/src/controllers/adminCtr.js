@@ -5,6 +5,7 @@ const User = require('../models/userModel')
 const ContactRealEstate = require('../models/contactRealEstate')
 exports.approveRealEstate = async (req, res) => {
     try {
+        req.params.id
         const category = req.body.category;
         const realEstateId = req.body.realEstateId;
         const updatedRealEstate = await RealEstate.findOneAndUpdate(
@@ -94,7 +95,7 @@ exports.fetchGeneralContactMessages = async (req, res) => {
     try {
         const contactMessages = await ContactGeneral.find({clientId: clientId}).populate({
             path: 'clientId',
-            select: 'name',
+            select: '_id name',
         }).sort({createdAt: 1});
         return res.status(200).json({contactMessages});
     } catch (error) {
@@ -125,11 +126,129 @@ exports.fetchPostContactMessages = async (req, res) => {
     try {
         const contactMessages = await ContactRealEstate.find({realEstateId: req.query.realEstateId}).populate({
             path: 'poster',
-            select: 'name',
+            select: '_id name',
         }).sort({createdAt: 1});
         console.log('I am here', contactMessages)
         return res.status(200).json({contactMessages});
     } catch (error) {
-        return res.status(200).json({error: error.message});
+        return res.status(500).json({error: error.message});
+    }
+}
+
+exports.fetchContactMessagesByAdmin = async (req, res) => {
+    const firstNumber = req.query.firstNumber;
+    const lastNumebr = req.query.lastNumebr;
+    const category = req.query.category;
+    console.log('I am here', req.query);
+    if(category === 'all') {
+        try {
+            const contactMessages = await ContactGeneral.find().populate({
+                path: 'clientId',
+                select: '_id name',
+            }).sort({createdAt: 1}).skip(firstNumber-1).limit(lastNumebr-firstNumber+1);
+            console.log('contactMessages', contactMessages)
+            const totalNumber = await ContactGeneral.countDocuments();
+            return res.status(200).json({contactMessages, totalNumber});
+        } catch (error) {
+            return res.status(500).json({error: error.message});
+        }
+    }
+    if(category === 'received-all') {
+        try {
+            const contactMessages = await ContactGeneral.find({category: 'query'}).populate({
+                path: 'clientId',
+                select: '_id name',
+            }).sort({createdAt: 1}).skip(firstNumber-1).limit(lastNumebr-firstNumber+1);
+            console.log('contactMessages', contactMessages)
+            const totalNumber = await ContactGeneral.countDocuments({category: 'query'});
+            return res.status(200).json({contactMessages, totalNumber});
+        } catch (error) {
+            return res.status(500).json({error: error.message});
+        }
+    }
+    if(category === 'received-unread') {
+        try {
+            const contactMessages = await ContactGeneral.find({category: 'query', status: 'unread'}).populate({
+                path: 'clientId',
+                select: '_id name',
+            }).sort({createdAt: 1}).skip(firstNumber-1).limit(lastNumebr-firstNumber+1);
+            console.log('contactMessages', contactMessages)
+            const totalNumber = await ContactGeneral.countDocuments({category: 'query', status: 'unread'});
+            return res.status(200).json({contactMessages, totalNumber});
+        } catch (error) {
+            return res.status(500).json({error: error.message});
+        }
+    }
+    if(category === 'sent') {
+        try {
+            const contactMessages = await ContactGeneral.find({category: 'reply'}).populate({
+                path: 'clientId',
+                select: '_id name',
+            }).sort({createdAt: 1}).skip(firstNumber-1).limit(lastNumebr-firstNumber+1);
+            console.log('contactMessages', contactMessages)
+            const totalNumber = await ContactGeneral.countDocuments({category: 'reply'});
+            return res.status(200).json({contactMessages, totalNumber});
+        } catch (error) {
+            return res.status(500).json({error: error.message});
+        }
+    }
+}
+
+exports.fetchPostContactMessagesByAdmin = async (req, res) => {
+    const firstNumber = req.query.firstNumber;
+    const lastNumebr = req.query.lastNumebr;
+    const category = req.query.category;
+    console.log('I am here', req.query);
+    if(category === 'all') {
+        try {
+            const contactMessages = await ContactRealEstate.find().populate({
+                path: 'poster',
+                select: '_id name',
+            }).sort({createdAt: 1}).skip(firstNumber-1).limit(lastNumebr-firstNumber+1);
+            console.log('contactMessages', contactMessages)
+            const totalNumber = await ContactRealEstate.countDocuments();
+            return res.status(200).json({contactMessages, totalNumber});
+        } catch (error) {
+            return res.status(500).json({error: error.message});
+        }
+    }
+    if(category === 'received-all') {
+        try {
+            const contactMessages = await ContactRealEstate.find({category: 'query'}).populate({
+                path: 'poster',
+                select: '_id name',
+            }).sort({createdAt: 1}).skip(firstNumber-1).limit(lastNumebr-firstNumber+1);
+            console.log('contactMessages', contactMessages)
+            const totalNumber = await ContactRealEstate.countDocuments({category: 'query'});
+            return res.status(200).json({contactMessages, totalNumber});
+        } catch (error) {
+            return res.status(500).json({error: error.message});
+        }
+    }
+    if(category === 'received-unread') {
+        try {
+            const contactMessages = await ContactRealEstate.find({category: 'query', status: 'unread'}).populate({
+                path: 'poster',
+                select: '_id name',
+            }).sort({createdAt: 1}).skip(firstNumber-1).limit(lastNumebr-firstNumber+1);
+            console.log('contactMessages', contactMessages)
+            const totalNumber = await ContactRealEstate.countDocuments({category: 'query', status: 'unread'});
+            return res.status(200).json({contactMessages, totalNumber});
+        } catch (error) {
+            return res.status(500).json({error: error.message});
+        }
+    }
+    if(category === 'sent') {
+        try {
+            const contactMessages = await ContactRealEstate.find({category: 'reply'}).populate({
+                path: 'poster',
+                select: '_id name',
+            }).sort({createdAt: 1}).skip(firstNumber-1).limit(lastNumebr-firstNumber+1);
+            console.log('contactMessages', contactMessages)
+            const totalNumber = await ContactRealEstate.countDocuments({category: 'reply'});
+            return res.status(200).json({contactMessages, totalNumber});
+        } catch (error) {
+            return res.status(500).json({error: error.message});
+        }
     }
 }

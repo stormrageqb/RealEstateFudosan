@@ -56,7 +56,7 @@ const Header = () => {
         }
     }, [cookies.token])
     return (
-        <div className="w-full h-[60px] py-5 bg-[#32769b] box-border sticky top-0 z-[10000] noto-medium">
+        <div className="w-full h-[60px] py-5 bg-[#32769b] box-border sticky top-0 z-[10000] font-medium">
             <div className="max-w-[1600px] text-center my-0 mx-auto">
                 {/* <div className='text-[44px] leading-[10px] float-left text-white font-medium ml-[100px]'><Link to='/dashboard' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ふどうさん<span className='text-[28px] ml-2 font-medium'>市場</span></Link></div> */}
 
@@ -96,6 +96,8 @@ const Header = () => {
                                     <div className={`absolute top-[32px] left-[-55px] min-w-[200px] px-auto pt-3 bg-[#32769b] transition-all duration-300 ${adminPageActive ? 'inline-block' : 'hidden'}`}>
                                         <div className=' text-[18px] py-3 text-white border-y border-y-white/50 cursor-pointer' onClick={() => history.push('/admin-view-agent')}>エージェントを投稿</div>
                                         <div className=' text-[18px] py-3 text-white border-y border-y-white/50 cursor-pointer' onClick={() => history.push('/admin-approve-realestate-list')}>不動産を投稿</div>
+                                        <div className=' text-[18px] py-3 text-white border-y border-y-white/50 cursor-pointer' onClick={() => history.push('/admin-general-contact-board')}>総合窓口</div>
+                                        <div className=' text-[18px] py-3 text-white border-y border-y-white/50 cursor-pointer' onClick={() => history.push('/admin-post-contact-board')}>掲載問い合わせ</div>
                                         <div className=' text-[17px] py-3 text-white border-b border-b-white/50 cursor-pointer' onClick={handleLogout}>ログアウト</div>
                                     </div>
                                 </div>

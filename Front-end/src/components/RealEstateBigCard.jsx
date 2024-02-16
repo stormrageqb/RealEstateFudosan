@@ -26,10 +26,12 @@ const RealEstateBigCard = ({realEstate, contactMoveToMyPost, handleFavouriteTogg
         history.push(`/contact-post?${searchParams.toString()}`);
         e.stopPropagation();
     }
+    const image = images[0];
+    const imageUrl = image.replace('../../../Back-end/uploads/', '');
     return(
         <div className="flex items-center w-[1275px] bg-white border border-black p-6 rounded-lg shadow-md mb-[50px]" onClick={() => handleRealEstateBigCardClicked(index)}>
             <div>
-                <div className="w-[200px] h-[160px]"><img src={images[0]} alt="photo1" className="w-full h-full object-cover"/></div>
+                <div className="w-[200px] h-[160px]"><img src={process.env.REACT_APP_API_BASE_URL + '/downloads/?filename='+imageUrl} alt="photo1" className="w-full h-full object-cover"/></div>
                 {
                     parentComponent === 'FavouritePage' || parentComponent === 'MessageDetailPage' ?
                     (<div className="pt-1" onClick={(e) => handleFavouriteButtonClicked(e)}><FavouriteButton isFavourite={isFavourite} parentComponent={parentComponent}/></div>)
@@ -46,10 +48,10 @@ const RealEstateBigCard = ({realEstate, contactMoveToMyPost, handleFavouriteTogg
             }
             </div>
             <div className="pl-3">
-                <div className="text-base noto-medium line-clamp-2">
+                <div className="text-base font-medium line-clamp-2">
                     <p>{briefDescription}</p>   
                 </div>
-                <div className="text-sm noto-regular pt-4 line-clamp-5">
+                <div className="text-sm font-normal pt-4 line-clamp-5">
                    <p>{fullDescription}</p>
                 </div>
             </div>

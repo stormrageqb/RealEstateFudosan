@@ -11,35 +11,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 /* Noto Fonts */
-@font-face {
-  font-family: 'Noto-Regular';
-  src: url('./assets/Font/Noto-regular.ttf') format('truetype');
+/* @font-face {
+  font-family: 'noto-normal';
+  src: url('./assets/Font/noto-normal.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Noto-Medium';
+  font-family: 'noto-medium';
   src: url('./assets/Font/noto-sans-jp-japanese-500-normal.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Noto-Semibold';
-  src: url('./assets/Font/Noto-semibold.ttf') format('truetype');
+  font-family: 'noto-semibold';
+  src: url('./assets/Font/noto-semibold.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Noto-Bold';
-  src: url('./assets/Font/Noto-bold.ttf') format('truetype');
-}
+  font-family: 'noto-bold';
+  src: url('./assets/Font/noto-bold.ttf') format('truetype');
+} */
 
 /* Font Classes */
-/* .noto-regular{
-  font-family: 'Noto-Regular';
+/* .noto-normal{
+  font-family: 'noto-normal';
 }
-.noto-medium{
-  font-family: 'Noto-Medium';
+.font-medium{
+  font-family: 'font-medium';
 }
-.noto-semibold{
-  font-family: 'Noto-Semibold';
+.font-semibold{
+  font-family: 'font-semibold';
 }
-.noto-bold{
-  font-family: 'Noto-Bold';
+.font-bold{
+  font-family: 'font-bold';
 } */
 
 /* Root CSS */
@@ -55,7 +55,7 @@ ul{
   padding: 0;
 }
 td{
-  font-family: 'Noto-Medium';
+  font-family: 'font-medium';
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -79,7 +79,7 @@ td{
   position: absolute;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   transform: rotate(-90deg);
-  left:255px;
+  left:257px;
   top:15px
 }
 
@@ -106,7 +106,6 @@ td{
 }
 
 .page-item:hover {
-  color: #ff3838;
   background: #9b9b9b;
 }
 
@@ -136,7 +135,6 @@ td{
 }
 
 .page-item.arrow-icon:hover {
-  color: #ff3838;
   background: transparent;
 }
 
@@ -331,10 +329,6 @@ a, a:hover, a:focus {
   justify-content: space-between;
   background-color: #ebedf0;
   transition: 0.3s;
-}
-.rc-accordion-toggle.active{
-  background-color: white;
-  opacity: 0.8;
 }
 .rc-accordion-toggle.active .rc-accordion-icon{
   transform: rotate(180deg);

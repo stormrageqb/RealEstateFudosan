@@ -20,7 +20,7 @@ const DashboardRealEstatePostBoard = (props) => {
 
     return (
         <div className='flex flex-col items-center w-full'>
-            <div className=' text-center text-[40px] noto-medium mt-5'>売ります掲示板</div>
+            <div className=' text-center text-[40px] font-medium mt-5'>売ります掲示板</div>
             <div className='min-h-[400px]'>
                 {
                     realEstates.length === 0 &&
