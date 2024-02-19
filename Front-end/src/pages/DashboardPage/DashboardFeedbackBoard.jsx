@@ -268,6 +268,7 @@ const DashboardFeedbackBoard = () => {
     useEffect(() => {
         const handleResize = () => {
             setIsSmallScreen(window.innerWidth < 640);
+            console.log(isSmallScreen)
         }
         handleResize();
         window.addEventListener('resize', handleResize);

@@ -61,9 +61,10 @@ const GoogleMapComponent = (props) => {
   return (
     <div>
       <GoogleMap
-        mapContainerStyle={mapContainerStyle}
+        // mapContainerStyle={mapContainerStyle}
         zoom={zoom}
         center={markers.length > 0 ? markers[0] : null}
+        mapContainerClassName='w-[350px] h-[250px] sm:h-[360px] sm:w-[500px] md:w-[360px] xl:w-[400px]'
       >
         {markers.map((marker, index) => (
           <Marker key={index} position={{ lat: marker.lat, lng: marker.lng }} />

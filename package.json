@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-use": "^17.5.0",
+    "use-breakpoint": "^4.0.1"
+  }
+}

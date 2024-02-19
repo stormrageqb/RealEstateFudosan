@@ -14,7 +14,7 @@ function App() {
 
   const [cookies, setCookies] = useCookies();
   return (
-    <div>
+    <div className='relative w-full h-auto'>
       <Router history={history}>
         <Header />
         <Layout />
