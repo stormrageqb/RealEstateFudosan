@@ -18,7 +18,7 @@ const AccordionItem = (props) => {
         <p className="text-[20px] md:text-[28px] font-mono italic font-semibold">
           Q
         </p>
-        <h5 className=" absolute left-12 right-16 text-[12px] leading-5 width-auto sm:max-w-[80%] sm:text-[12px] md:text-[16px] md:max-w-[70%] md-left-20  font-semibold transition-all duration-300">
+        <h5 className=" absolute left-12 right-16 text-[12px] leading-5 width-auto sm:max-w-[80%] sm:text-[12px] md:text-[16px] md:max-w-[85%] md:left-20  font-semibold transition-all duration-300">
           {header}
         </h5>
         <i className=" fa fa-chevron-down rc-accordion-icon"></i>

@@ -53,10 +53,10 @@ const SignUpPage = () => {
 
     return (
         <>
-            <div className= ' w-full h-[900px] bg-image-blur bg-cover'></div>
-            <div className= ' absolute flex flex-col items-center top-[18%] left-[35%] w-[550px] bg-black/50 z-10 border-white border-2 rounded-lg'>
+            <div className= ' w-full h-[750px] sm:h-[900px] bg-image-blur bg-cover'></div>
+            <div className= 'fixed bottom-1/3 right-1/2 transform translate-x-1/2 translate-y-1/4 sm:translate-y-1/3 flex flex-col items-center w-[350px] sm:w-[550px] bg-black/50 z-10 border-white border-2 rounded-lg'>
                 <h1 className='text-[28px] text-white font-semibold pt-8'>サインアップ</h1>
-                <form className='flex flex-col items-center flex-wrap w-[70%]' onSubmit={(e) => handleSubmit(e)}>
+                <form className='flex flex-col items-center flex-wrap w-[90%] sm:w-[70%]' onSubmit={(e) => handleSubmit(e)}>
                     <div className=' flex flex-col w-full'>
                         <label htmlFor="email" className='text-white font-normal mb-1 mt-2 text-[20px]'>メール</label>
                         <input
