@@ -11,7 +11,7 @@ const AgentCard = (props) => {
         setActive((prevState) => !prevState);
     }
     return(
-        <div className="w-[500px] pt-[20px] pb-2 border border-[#0D4868] font-normal cursor-pointer" onClick={handleAgentCardClick}>
+        <div className="w-[320px] sm:w-[400px] md:w-[500px] pt-[20px] pb-2 border border-[#0D4868] font-normal cursor-pointer" onClick={handleAgentCardClick}>
             <div className="flex justify-between items-center">
                 <div className="pl-[23px] font-medium">
                     <span className=" text-[12px] pr-2 font-bold">{name}</span>

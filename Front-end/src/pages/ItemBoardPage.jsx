@@ -162,7 +162,7 @@ const ItemBoardPage = () => {
           displayAgents ? "gap-2" : "gap-40"
         } `}
       >
-        <div className="hidden md:block w-[480px] pt-[100px]">
+        <div className="hidden lg:block w-[480px] pt-[100px]">
           {Object.keys(myImage).map((key, i) => (
             <div
               className="mb-[27px] ml-[15px] inline-block cursor-pointer"
@@ -346,8 +346,8 @@ const ItemBoardPage = () => {
           >
             隠れる<div className="pl-2 fa-solid fa-arrow-up"></div>
           </div>
-          <div className="flex flex-col items-center w-[320px] sm:w-[400px] h-[700px]  pt-[50px] pb-[55px] bg-white text-center  overflow-y-scroll no-scrollbar">
-            <div className="flex relative border-b-2 pt-[2px] border-black w-[350px] font-medium transition-all duration-300">
+          <div className="flex flex-col items-center w-[320px] sm:w-[400px] md:w-[600px] h-[700px] pt-[50px] pb-[55px] bg-white text-center  overflow-y-scroll no-scrollbar">
+            <div className="flex relative border-b-2 pt-[2px] border-black w-[350px] md:w-[400px] font-medium transition-all duration-300">
               <span
                 className=" w-[33%] cursor-pointer pb-3"
                 onClick={() => setActiveAgentCategory("不動産業者")}
