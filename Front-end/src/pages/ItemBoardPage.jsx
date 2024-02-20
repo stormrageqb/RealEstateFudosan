@@ -331,7 +331,7 @@ const ItemBoardPage = () => {
           ))}
       </div>
       <div
-        className={`text-[16px] block xl:hidden font-semibold border-b-2 border-b-emerald-600 py-1 px-3 cursor-pointer ${
+        className={`text-[16px] block xl:hidden font-semibold border-b-2 border-b-emerald-600 py-1 px-3 mt-5 cursor-pointer ${
           isXL ? "hidden" : displayAgents ? "hidden" : "block"
         }`}
         onClick={() => handleDisplayAgentsToggle(true)}

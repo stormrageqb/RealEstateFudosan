@@ -2,8 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Link, useHistory } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "../redux/slices/navbarToggle";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state) => state.navbarToggle.isOpen);
   const history = useHistory();
   const [cookies, setCookie] = useCookies();
   const myPageRef = useRef(null);
@@ -16,6 +20,13 @@ const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminPageActive, setAdminPageActive] = useState(false);
 
+  const handleHamburgerClicked = () => {
+    if (isOpen) {
+      dispatch(actions.hideNavbar());
+    } else {
+      dispatch(actions.showNavbar());
+    }
+  }
   const handleToggleMyPage = () => {
     setMyPageActive((prevState) => !prevState);
   };
@@ -229,13 +240,14 @@ const Header = () => {
         </div>
       </div>
       <div
-        className="sticky z-10000 block md:hidden pt-2 pb-10 border-b-2 border-b-slate-900"
+        className="sticky top-0 z-[10000] flex justify-between md:hidden py-3 px-6 bg-white border-b-2 border-b-slate-900"
         // onClick={() => setIsNavOpen((prev) => !prev)}
       >
         {/* <span className="block h-1 w-8 animate-pulse bg-black/80"></span>
         <span className="block h-1 w-8 animate-pulse bg-black/80"></span>
         <span className="block h-1 w-8 animate-pulse bg-black/80"></span> */}
-        <GiHamburgerMenu className="block w-10 text-3xl float-right" />
+        <div className="text-2xl font-semibold">ロゴ</div>
+        <GiHamburgerMenu className="block w-10 text-3xl" onClick={handleHamburgerClicked}/>
       </div>
     </>
   );
