@@ -54,7 +54,6 @@ const AdminViewAgentPage = () => {
   };
   const fetchAgentData = async () => {
     const res = await axios.get("/getAgentByAdmin");
-    console.log("---------------------------", res.data);
     setAgents(res.data);
   };
 
