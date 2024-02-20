@@ -415,6 +415,7 @@ exports.getRealEstatesWithSearchCondition = async (req, res) => {
     }
 }
 exports.getRealEstateById = async (req, res) => {
+    console.log('I am here', req.query.realEstateId)
     try {
         const realEstate = await RealEstate.findOne({ _id: req.query.realEstateId });
         if(!realEstate) {
@@ -430,7 +431,6 @@ exports.getRealEstateById = async (req, res) => {
 exports.getRealEstate = async (req, res) => {
     let realestate = await RealEstate.find({});
     res.json(realestate);
-
 }
 
 
