@@ -19,7 +19,7 @@ const ContactGeneralPage = () => {
   const myName =
     cookies.user.name.lastNameGanji + " " + cookies.user.name.firstNameGanji;
   const isAdmin = cookies.user.isAdmin;
-  const clientId = isAdmin ? searchParams.get('clientId') : myId;
+  const clientId = isAdmin ? searchParams.get("clientId") : myId;
 
   const [content, setContent] = useState();
   const [contactMessages, setContactMessages] = useState([]);
@@ -47,11 +47,11 @@ const ContactGeneralPage = () => {
 
   const fetchContactMessages = async () => {
     try {
-      console.log('clientId++++++++++++++', clientId)
+      console.log("clientId++++++++++++++", clientId);
       const params = new URLSearchParams({ clientId: clientId }).toString();
       const res = await axios.get(`/fetchGeneralContactMessages?${params}`);
       setContactMessages(res.data.contactMessages);
-      console.log(res.data.contactMessages)
+      console.log(res.data.contactMessages);
     } catch (error) {
       console.log(error.message);
     }
@@ -67,25 +67,32 @@ const ContactGeneralPage = () => {
 
   return (
     <div className="bg-[#F1F1F1] w-full">
-      <div className="flex flex-col items-center w-[1200px] mx-auto font-normal">
-        <p className="text-[40px] flex justify-center pt-[63px] pb-[58px] font-medium">
+      <div className="flex flex-col items-center w-full mx-auto font-normal">
+        <p className="text-[32px] md:text-[36px] lg:text-[40px] py-[55px] font-semibold">
           総合窓口
         </p>
-        <ul className="font-normal text-lg">
-          <li className="list-disc">
+        <div className="font-normal text-sm sm:text-base md:text-lg">
+          <div className="list-disc">
             掲載中の物件に関するお問い合わせはこちら
-          </li>
-          <li className="list-disc">
+          </div>
+          <div className="hidden list-disc sm:inline-block">
             物件に関するお問合せはこちらではしないでください。
             <br />
             購入を検討している物件のページから、売主さんに直接お問い合わせください。
-          </li>
-          <li className="list-disc">
+          </div>
+          <div className="list-disc sm:hidden">
+            物件に関するお問合せはこちらではしないでください。
+            <br />
+            購入を検討している物件のページから、
+            <br />
+            売主さんに直接お問い合わせください。
+          </div>
+          <div className="list-disc">
             ※家いちばから物件に関する情報はお伝えしておりません
-          </li>
-        </ul>
+          </div>
+        </div>
         <span
-          className="inline-block py-10 px-[15px] underline underline-offset-8 text-[24px] font-normal cursor-pointer"
+          className="inline-block py-10 px-[15px] underline underline-offset-8 text-[22px] font-normal cursor-pointer"
           onClick={handleNavigateToFaqClicked}
         >
           良くあるご質問はこちら{" "}
@@ -124,9 +131,9 @@ const ContactGeneralPage = () => {
           name="message"
           ref={inputRef}
           id="message"
-          cols="10"
+          cols=""
           rows="3"
-          className="w-full py-4 px-12 text-sm font-normal"
+          className="w-[90%] sm:w-[550px] md:w-[650px] lg:w-[850px] xl:w-[900px] py-2 px-4 text-base font-normal border-2 border-black/30"
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
         <div className="pt-10 pb-24 flex justify-center">
