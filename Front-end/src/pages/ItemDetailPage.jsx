@@ -198,7 +198,7 @@ const ItemDetailPage = () => {
 
         <div className="flex flex-col gap-5 items-center sm:flex-row sm:justify-center sm:gap-[50px] w-full mt-20">
           <div
-            className="flex justify-center items-center w-[280px] h-[60px] lg:w-[380px] lg:h-[80px] bg-[#2A6484] rounded-xl font-medium text-white text-[24px] cursor-pointer"
+            className="flex justify-center items-center w-[280px] h-[60px] lg:w-[380px] lg:h-[80px] bg-[#2A6484] rounded-xl font-medium text-white text-[18px] sm:text-[24px] cursor-pointer"
             onClick={sendMsgButtonClicked}
           >
             メッセージを送信する

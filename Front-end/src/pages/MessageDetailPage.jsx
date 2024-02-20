@@ -109,7 +109,7 @@ const MessageDetailPage = () => {
                     previousPage === 'itemBoardPage' &&
                     <AgentCard agent = {agent}/>
                 }
-                <div className='flex flex-col w-[900px] pt-5 gap-4'>
+                <div className='flex flex-col md:w-[750px] lg:w-[900px] pt-5 gap-4'>
                     {
                     messages.map((msg, index) => {
                         return(

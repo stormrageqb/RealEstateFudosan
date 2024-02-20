@@ -1,5 +1,11 @@
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{html,js,jsx,ts,tsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./node_modules/tw-elements-react/dist/js/**/*.js",
+  ],
   theme: {
     screens: {
       sm: "640px",
@@ -13,7 +19,7 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-  ],
+  darkMode: "class",
+  plugins: [require("tw-elements-react/dist/plugin.cjs")],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
