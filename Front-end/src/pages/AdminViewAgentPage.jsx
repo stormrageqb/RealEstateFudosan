@@ -20,9 +20,7 @@ const AdminViewAgentPage = () => {
   const handleToggleShowModal = (value) => {
     setShowApproveAgentModal(value);
   };
-  const handleResize = () => {
-    setIsLarge(window.innerWidth > 976);
-  }
+  
   // const handleApproveToggle = () => {
   //     setApproved((prevState) => !prevState);
   // }
@@ -64,11 +62,16 @@ const AdminViewAgentPage = () => {
     if (showApproveAgentModal === false) {
       fetchAgentData();
     }
-    document.addEventListener('resize', handleResize);
+    const handleResize = () => {
+      setIsLarge(window.innerWidth > 976);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
     return () => {
-      document.removeEventListener('resize', handleResize);
-    }
+      window.removeEventListener("resize", handleResize);
+    };
   }, [showApproveAgentModal]);
+
 
   if (agents === null) {
     return (

@@ -1,5 +1,4 @@
-import react, { useEffect, useRef, useState } from "react";
-import NavmenuItem from "./NavmenuItem";
+import { useEffect, useRef, useState } from "react";
 import { RxDashboard } from "react-icons/rx";
 import { MdOutlinePostAdd } from "react-icons/md";
 import { BsHouses } from "react-icons/bs";
@@ -14,7 +13,6 @@ import { FaRegStar } from "react-icons/fa6";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { GrUserAdmin } from "react-icons/gr";
-import { FaUsers } from "react-icons/fa";
 import { RiUserFollowLine } from "react-icons/ri";
 import { FaUserTie } from "react-icons/fa6";
 import { BsHouseCheckFill } from "react-icons/bs";
@@ -74,7 +72,7 @@ const Navmenu = () => {
     <>
       <div
         ref={navbarRef}
-        className={`fixed top-0 left-0 flex flex-col w-[40%] items-start gap-4 pl-4 h-screen pt-20 bg-white z-[50000] transition-all duration-[3000] ease-in-out `}
+        className={`fixed top-0 left-0 flex flex-col w-[250px] sm:w-[300px] items-start gap-4 pl-4 h-screen pt-20 bg-white z-[50000] transition-all duration-[3000] ease-in-out `}
       >
         <Link to={"/"}>
           <div className="flex justify-start items-center gap-4 pl-1 text-lg font-semibold cursor-pointer">

@@ -8,8 +8,14 @@ import Loading from "../components/Loading";
 
 const AdminApproveRealEstateList = () => {
   const history = useHistory();
-  const [active, setActive] = useState(1);
+  const [widthLabel, setWidthLabel] = useState();
+  // const [isBiggerThanLarge, setIsBiggerThanLarge] = useState();
+  // const [isMiddle, setIsMiddle] = useState();
+  // const [isSmall, setIsSmall] = useState();
+  // const [isExtraSmall, setIsExtraSmall] = useState();
+  const [active, setActive] = useState(true);
   const [totalNumber, setTotalNumber] = useState();
+  const [numberPerPage, setNumberPerPage] = useState(24);
   const [unapprovedDataOnly, setUnapprovedDataOnly] = useState(false);
   const [province, setProvince] = useState("Not Selected");
   const [realEstates, setRealEstates] = useState(null);
@@ -19,8 +25,9 @@ const AdminApproveRealEstateList = () => {
   };
 
   const fetchData = async () => {
-    const firstNumber = (active - 1) * 16 + 1;
-    const lastNumber = active * 16;
+    console.log('fetchData')
+    const firstNumber = (active - 1) * numberPerPage + 1;
+    const lastNumber = active * numberPerPage;
     if (unapprovedDataOnly === true) {
       try {
         const params = new URLSearchParams({
@@ -53,12 +60,42 @@ const AdminApproveRealEstateList = () => {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width >= 1440) {
+        setWidthLabel("xl");
+        setNumberPerPage(24);
+      }
+      if (width >= 976 && width < 1440) {
+        setWidthLabel("lg");
+        setNumberPerPage(24);
+      }
+      if (width >= 768 && width < 976) {
+        setWidthLabel("md");
+        setNumberPerPage(24);
+      }
+      if (width >= 640 && width < 768) {
+        setWidthLabel("sm");
+        setNumberPerPage(16);
+      }
+      if (width < 640) {
+        setWidthLabel("xs");
+        setNumberPerPage(8);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  },[])
+  useEffect(() => {
     fetchData();
-  }, [active, unapprovedDataOnly, province]);
+  }, [active, unapprovedDataOnly, province, widthLabel]);
 
   useEffect(() => {
     setActive(1);
-  }, [unapprovedDataOnly, province]);
+  }, [unapprovedDataOnly, province, widthLabel]);
 
   const handleRealEstateCardClicked = (props) => {
     const index = props;
@@ -67,6 +104,10 @@ const AdminApproveRealEstateList = () => {
     searchParams.set("realEstateId", realEstateId);
     history.push(`/admin-approve-realestate-detail?${searchParams.toString()}`);
   };
+
+  useEffect(() => {
+    console.log(widthLabel);
+  });
 
   const handleToggleChange = (event) => {
     setUnapprovedDataOnly(event.target.checked);
@@ -82,11 +123,11 @@ const AdminApproveRealEstateList = () => {
 
   return (
     <div className="flex flex-col items-center pt-20">
-      <div className=" flex gap-[50px] justify-center items-center pt-[24px] ">
+      <div className=" flex sm:flex-row flex-col gap-10 sm:gap-[50px] justify-center items-center pt-[24px] ">
         <div className=" flex items-center justify-center ">
-          <p className="text-[20px] ">都道府県</p>
+          <p className="text-[16px] md:text-[20px] ">都道府県</p>
           <select
-            className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]"
+            className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black md:w-[200px] lg:w-[272px] ml-[20px]"
             onChange={(event) => setProvince(event.target.value)}
             defaultValue={province}
           >
@@ -247,15 +288,15 @@ const AdminApproveRealEstateList = () => {
         </div>
         <div className="flex justify-center items-center">
           <label className="flex items-center relative w-max cursor-pointer select-none m-0">
-            <span className="text-lg text-[20px] mr-3">全不動産表示</span>
+            <span className="text-lg text-[16px] md:text-[20px] mr-3">全不動産表示</span>
             <input
               type="checkbox"
-              className="appearance-none transition-colors cursor-pointer w-16 h-8 rounded-full focus:outline-none  bg-[#306382]"
+              className="appearance-none transition-colors cursor-pointer w-16 h-6 md:h-8 rounded-full focus:outline-none  bg-[#306382]"
               onChange={handleToggleChange}
             />
             <span className="w-8 h-8 right-8 absolute rounded-full transform transition-transform bg-gray-200" />
           </label>
-          <span className="text-lg text-[20px] ml-[15px]">
+          <span className="text-lg text-[16px] md:text-[20px] ml-[15px]">
             掲載する不動産の表示
           </span>
         </div>
@@ -264,7 +305,7 @@ const AdminApproveRealEstateList = () => {
         <div className="flex justify-center items-center gap-10 mt-16">
           <Pagination
             active={active}
-            size={Math.ceil(totalNumber / 16)}
+            size={Math.ceil(totalNumber / numberPerPage)}
             step={2}
             onClickHandler={activeHandler}
           />
@@ -279,14 +320,16 @@ const AdminApproveRealEstateList = () => {
         <div
           className={`grid gap-x-8 gap-y-12 mt-3 mb-5 mx-auto box-border max-w-[1100px]
                 ${
-                  realEstates.length === 1
-                    ? "grid-cols-1"
-                    : realEstates.length === 2
-                    ? "grid-cols-2"
-                    : realEstates.length === 3
+                  (widthLabel === "xl" || widthLabel === "lg") &&
+                  realEstates.length > 3
+                    ? "grid-cols-4"
+                    : widthLabel === "md" && realEstates.length > 2
                     ? "grid-cols-3"
-                    : "grid-cols-4"
-                }`}
+                    : widthLabel === "sm" && realEstates.length > 1
+                    ? "grid-cols-2"
+                    : "grid-cols-1"
+                }
+                `}
         >
           {realEstates.map((realEstate, index) => {
             return (
@@ -306,7 +349,7 @@ const AdminApproveRealEstateList = () => {
         {realEstates.length !== 0 && (
           <Pagination
             active={active}
-            size={Math.ceil(totalNumber / 16)}
+            size={Math.ceil(totalNumber / numberPerPage)}
             step={2}
             onClickHandler={activeHandler}
           />
