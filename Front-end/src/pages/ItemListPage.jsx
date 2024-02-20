@@ -112,7 +112,7 @@ const ItemListPage = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  });
+  },[]);
   useEffect(() => {
     if (isSearchMode === true) {
       fetchDataInSearchMode();

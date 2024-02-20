@@ -29,7 +29,7 @@ const RealEstateBigCard = ({realEstate, contactMoveToMyPost, handleFavouriteTogg
     const image = images[0];
     const imageUrl = image.replace('../../../Back-end/uploads/', '');
     return(
-        <div className="flex items-center w-[1275px] bg-white border border-black p-6 rounded-lg shadow-md mb-[50px]" onClick={() => handleRealEstateBigCardClicked(index)}>
+        <div className="flex items-center lg:w-[95%] xl:w-[1275px] bg-white border border-black p-6 rounded-lg shadow-md mb-[50px]" onClick={() => handleRealEstateBigCardClicked(index)}>
             <div>
                 <div className="w-[200px] h-[160px]"><img src={process.env.REACT_APP_API_BASE_URL + '/downloads/?filename='+imageUrl} alt="photo1" className="w-full h-full object-cover"/></div>
                 {
