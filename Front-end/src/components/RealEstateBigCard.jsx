@@ -6,7 +6,7 @@ import SmallFavouriteButton from "./SmallFavouriteButton";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
-const RealEstateBigCard = ({realEstate, contactMoveToMyPost, handleFavouriteToggle, handleRealEstateBigCardClicked, parentComponent, index}) => {
+const RealEstateBigCard = ({realEstate, handleFavouriteToggle, handleRealEstateBigCardClicked, parentComponent, index}) => {
     const history = useHistory();
     const [cookies, setCookie] = useCookies();
     const myId = cookies.user._id;
