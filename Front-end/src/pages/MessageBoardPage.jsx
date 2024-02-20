@@ -129,7 +129,7 @@ const MessageBoardPage = () => {
           すべて表示
         </div>
       </div>
-      <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full xl:w-[1100px]">
         <p className="mb-10 font-semibold text-[24px] ">メッセージボックス</p>
         <div className="flex justify-center items-center gap-20 mt-7">
           {messages.length !== 0 && (

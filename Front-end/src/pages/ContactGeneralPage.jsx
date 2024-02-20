@@ -7,6 +7,7 @@ import {
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
 import Loading from "../components/Loading";
+import moment from "moment-timezone";
 
 const ContactGeneralPage = () => {
   const history = useHistory();
@@ -98,32 +99,43 @@ const ContactGeneralPage = () => {
           良くあるご質問はこちら{" "}
           <span className="pr-3 fa-solid fa-arrow-right underline underline-offset-8 "></span>
         </span>
-        {contactMessages.map((message, index) => (
-          <div
-            key={index}
-            className={`w-full h-auto border-2 border-[#2A6484]/40 p-10 mb-10 ${
-              message.category === "query" ? "bg-white" : "bg-[#F2ECCD]"
-            }`}
-          >
-            {message.category === "query" ? (
-              <p className="text-[20px] font-semibold mb-8">
-                {message.clientId.name.firstNameGanji +
-                  message.clientId.name.lastNameGanji}
-                さん → ふどさんさん
+        {contactMessages.map((message, index) => {
+          const japanTime = moment.utc(message.createdAt).tz("Asia/Tokyo");
+          const year = japanTime.year();
+          const month = japanTime.month();
+          const day = japanTime.date();
+          const time = japanTime.format("HH:mm:ss");
+          console.log(message.createdAt, year, month)
+          return (
+            <div
+              key={index}
+              className={`relative w-[90%] sm:w-[560px] md:w-[700px] lg:w-[900px] xl:w-[1100px] h-auto border-2 border-[#2A6484]/40 p-10 mb-10 ${
+                message.category === "query" ? "bg-white" : "bg-[#F2ECCD]"
+              }`}
+            >
+              {message.category === "query" ? (
+                <p className="text-[20px] font-semibold mb-8">
+                  {message.clientId.name.firstNameGanji +
+                    message.clientId.name.lastNameGanji}
+                  さん → ふどさんさん
+                </p>
+              ) : (
+                <p className="text-[20px] font-semibold mb-8">
+                  ふどさんさん →{" "}
+                  {message.clientId.name.firstNameGanji +
+                    message.clientId.name.lastNameGanji}
+                  さん
+                </p>
+              )}
+              <p className="text-[16px] pb-8 whitespace-pre-wrap break-words">
+                {message.content}
               </p>
-            ) : (
-              <p className="text-[20px] font-semibold mb-8">
-                ふどさんさん →{" "}
-                {message.clientId.name.firstNameGanji +
-                  message.clientId.name.lastNameGanji}
-                さん
-              </p>
-            )}
-            <p className="text-[16px] whitespace-pre-wrap break-words">
-              {message.content}
-            </p>
-          </div>
-        ))}
+              <div className="absolute right-6 bottom-6">
+                {year}年{month}月{day}日{time}
+              </div>
+            </div>
+          );
+        })}
         <p className="mt-10 mb-3 text-[24px] pb-[15px]">
           メッセージ送信フォーム
         </p>

@@ -74,7 +74,7 @@ const ItemMyPage = () => {
             まだ投稿がありません
           </div>
         )}
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex flex-col items-center">
           {realEstates.map((realEstate, index) => {
             return (
               <RealEstateBigCard

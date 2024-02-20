@@ -127,7 +127,7 @@ const AdminApproveRealEstateList = () => {
         <div className=" flex items-center justify-center ">
           <p className="text-[16px] md:text-[20px] ">都道府県</p>
           <select
-            className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black md:w-[200px] lg:w-[272px] ml-[20px]"
+            className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[200px] sm:w-[100px] md:w-[200px] lg:w-[272px] ml-[20px]"
             onChange={(event) => setProvince(event.target.value)}
             defaultValue={province}
           >

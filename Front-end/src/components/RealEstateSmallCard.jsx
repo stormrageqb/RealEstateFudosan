@@ -10,7 +10,7 @@ const RealEstateSmallCard = ( props ) =>{
     const imageUrlBody = images[0];
     const imageUrl = imageUrlBody.replace('../../../Back-end/uploads/', '');
     return(
-        <div className="relative w-[240px]  border pb-3 shadow-lg ">
+        <div className="relative w-[240px] bg-white border pb-3 shadow-lg ">
             {/* <div className="absolute top-[2px] right-1"><FavouriteStar/></div> */}
             <div className="px-4 pt-3 text-center text-xs font-medium line-clamp-3" >
                 <p>{briefDescription}</p>
