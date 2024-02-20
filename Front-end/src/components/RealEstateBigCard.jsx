@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import BasicTableBuilding from "./BasicTableBuilding";
 import BasicTableLand from "./BasicTableLand";
-import FavouriteButton from "./FavouriteButton";
+import SmallFavouriteButton from "./SmallFavouriteButton";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
@@ -34,12 +34,12 @@ const RealEstateBigCard = ({realEstate, contactMoveToMyPost, handleFavouriteTogg
                 <div className="w-[200px] h-[160px]"><img src={process.env.REACT_APP_API_BASE_URL + '/downloads/?filename='+imageUrl} alt="photo1" className="w-full h-full object-cover"/></div>
                 {
                     parentComponent === 'FavouritePage' || parentComponent === 'MessageDetailPage' ?
-                    (<div className="pt-1" onClick={(e) => handleFavouriteButtonClicked(e)}><FavouriteButton isFavourite={isFavourite} parentComponent={parentComponent}/></div>)
+                    (<div className="pt-1" onClick={(e) => handleFavouriteButtonClicked(e)}><SmallFavouriteButton isFavourite={isFavourite} parentComponent={parentComponent}/></div>)
                     : null
                 }
                 {
                     parentComponent === 'ItemMyPage' &&
-                    <div className="mt-2" onClick={(e) => handleNavigateToContactPostPage(e, _id)}><FavouriteButton parentComponent={parentComponent}/></div>
+                    <div className="mt-2" onClick={(e) => handleNavigateToContactPostPage(e, _id)}><SmallFavouriteButton parentComponent={parentComponent}/></div>
                 }
             </div>
             <div className="pt-1 pl-11 pr-11 w-[260px]">

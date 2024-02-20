@@ -30,16 +30,16 @@ const Carousel = (props) => {
         new Glide('.glide', config).mount();
     }, []);
 
+
     return (
         <div className="glide flex items-center justify-center w-full h-[350px] bg-[#ECECEC] mt-0">
             <div className="glide__track w-[90%] pl-[30px]" data-glide-el="track">
                 <ul className="glide__slides">
                     {images.map((image, index) => {
-                        // const imageUrl = image.replace('../../../Back-end/uploads/', '');
+                        const imageUrl = image.replace('../../../Back-end/uploads/', '');
                         return (
                             <li key={index} className="glide__slide">
-                                {/* <img src={process.env.REACT_APP_API_BASE_URL + '/downloads/?filename='+imageUrl} alt={`Slide ${index + 1}`} className="w-[350px] h-[250px]" /> */}
-                                <img src={image} alt={`Slide ${index + 1}`} className="w-[350px] h-[250px]" />
+                                <img src={process.env.REACT_APP_API_BASE_URL + '/downloads/?filename='+imageUrl} alt={`Slide ${index + 1}`} className="w-[350px] h-[250px]" />
                             </li>
                         )
                     })}
