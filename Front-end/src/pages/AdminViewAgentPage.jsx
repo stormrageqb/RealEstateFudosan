@@ -11,6 +11,8 @@ const AdminViewAgentPage = () => {
   const [showApproveAgentModal, setShowApproveAgentModal] = useState(false);
   const [selectedAgent, setSelectedAgent] = useState();
   const [agents, setAgents] = useState(null);
+  const [isLarge, setIsLarge] = useState();
+
   const handleAgentClicked = (index) => {
     setSelectedAgent(agents[index]);
     setShowApproveAgentModal(true);
@@ -18,6 +20,9 @@ const AdminViewAgentPage = () => {
   const handleToggleShowModal = (value) => {
     setShowApproveAgentModal(value);
   };
+  const handleResize = () => {
+    setIsLarge(window.innerWidth > 976);
+  }
   // const handleApproveToggle = () => {
   //     setApproved((prevState) => !prevState);
   // }
@@ -59,6 +64,10 @@ const AdminViewAgentPage = () => {
     if (showApproveAgentModal === false) {
       fetchAgentData();
     }
+    document.addEventListener('resize', handleResize);
+    return () => {
+      document.removeEventListener('resize', handleResize);
+    }
   }, [showApproveAgentModal]);
 
   if (agents === null) {
@@ -69,11 +78,11 @@ const AdminViewAgentPage = () => {
     );
   }
   return (
-    <div className="relative flex flex-col items-center w-full pt-20 bg-[#F1F1F1] font-normal">
-      <div className="text-center text-[32px] font-semibold">
+    <div className="relative flex flex-col items-center w-full pt-12 sm:pt-20 bg-[#F1F1F1] font-normal">
+      <div className="text-center text-[24px] sm:text-[32px] font-semibold">
         エージェントを見る
       </div>
-      <div className="flex relative border-b-2 pt-10 border-black w-[500px] transition-all duration-300">
+      <div className="flex relative border-b-2 pt-10 border-black w-[330px] sm:w-[500px] transition-all duration-300">
         <span
           className=" w-[33%] cursor-pointer text-center pb-3"
           onClick={() => setActiveAgentCategory("不動産業者")}
@@ -108,8 +117,8 @@ const AdminViewAgentPage = () => {
         </div>
       )}
       <div
-        className={`grid gap-x-16 gap-y-5 max-w-[1250px] min-h-[350px] pt-10 pb-24
-            ${agents.length === 1 ? "grid-cols-1" : "grid-cols-2"}`}
+        className={`grid gap-x-8 xl:gap-x-16 gap-y-5 max-w-[1250px] min-h-[350px] pt-10 pb-24
+            ${agents.length > 1 && isLarge ? "grid-cols-2" : "grid-cols-1"}`}
       >
         {agents.map((agent, index) => {
           const approved = agent.approved;
@@ -117,19 +126,13 @@ const AdminViewAgentPage = () => {
             agent.category === activeAgentCategory && (
               <div
                 key={index}
-                className="flex flex-col items-center w-[500px] px-4 py-4 bg-white rounded-lg border-[1px] border-black/30 cursor-pointer"
+                className="flex flex-col items-center w-[350px] sm:w-[450px] xl:w-[500px] px-4 py-4 bg-white rounded-lg border-[1px] border-black/30 cursor-pointer"
                 onClick={() => handleAgentClicked(index)}
               >
                 <div className="">
                   {" "}
                   {agent.agentName.firstNameGanji}さん, {agent.companyName}
                 </div>
-                {/* <div className='flex items-center justify-between w-full'>
-                                    <div className='flex flex-col items-end gap-[1px]'>
-                                        <span>{agent.phoneNumber}</span>
-                                        <span className='text-sm'>{agent.agentEmail}</span>
-                                    </div>
-                                </div> */}
                 <div className="text-xs pt-3 line-clamp-3 min-h-[50px]">
                   {agent.content}
                 </div>

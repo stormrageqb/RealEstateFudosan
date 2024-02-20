@@ -22,7 +22,7 @@ import SignUpPage from "./pages/SignUpPage";
 import AdminApproveRealEstateList from "./pages/AdminApproveRealEstateList";
 import AdminApproveRealEstateDetail from "./pages/AdminApproveRealEstateDetail";
 import AdminViewAgentPage from "./pages/AdminViewAgentPage";
-import AdminContactAgentPage from "./pages/AdminContactaAgentPage";
+import AdminContactAgentPage from "./pages/AdminContactAgentPage";
 import InputVerificationCodePage from "./pages/InputVerificationCodePage";
 import FeedbackPage from "./pages/FeedbackPage";
 import NotFoundPages from "./pages/404pages";
