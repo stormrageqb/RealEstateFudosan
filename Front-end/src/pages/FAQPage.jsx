@@ -231,7 +231,7 @@ const FAQPage = () => {
       <p className="mb-[55px] text-[32px] text-center font-normal">
         よくある質問
       </p>
-      <div className="flex flex-col w-[60%] mx-auto">
+      <div className="flex flex-col w-[90%] sm:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto">
         {faqs.map((faq, index) => {
           return (
             <AccordionItem
