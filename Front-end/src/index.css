@@ -71,7 +71,7 @@ td{
   background-image: url('./assets/kawaguchiko-city.jpg');
 }
 
-#flag::after{
+/* #flag::after{
   content: "";
   width: 60px;
   height: 30px;
@@ -81,7 +81,7 @@ td{
   transform: rotate(-90deg);
   left:257px;
   top:15px
-}
+} */
 
 /* Pagination */
 

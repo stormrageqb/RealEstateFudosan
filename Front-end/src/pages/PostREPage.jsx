@@ -43,8 +43,6 @@ const myArray = [
   require("../assets/img/feedback/2.jpg"),
   require("../assets/img/feedback/3.jpg"),
   require("../assets/img/feedback/4.jpg"),
-  require("../assets/img/feedback/5.jpg"),
-  require("../assets/img/feedback/6.jpg"),
 ];
 
 const text = `テキスト  テキスト  テキスト  テキスト  テキスト  テキスト 
@@ -200,54 +198,54 @@ const PostREPage = () => {
 
   return (
     <div className="flex flex-col items-center bg-[#F1F1F1] pt-[100px]">
-      <div className="flex flex-col items-center bg-white xl:w-[1400px] py-[60px] ">
-        <div className="pb-[132px] text-center">
-          <span className="text-[48px] pr-[18px]">ふどうさん</span>
-          <span className="text-[32px]">活市場</span>
+      <div className="flex flex-col items-center bg-white w-[90%] sm:w-[600px] md:w-[750px] lg:w-[900px] xl:w-[1400px] py-[100px] ">
+        <div className="pb-[80px] text-center">
+          <span className="text-[32px] sm:text-[48px] pr-[18px]">ふどうさん</span>
+          <span className="text-[24px] sm:text-[32px]">活市場</span>
         </div>
-        <div className="flex justify-between w-full px-20">
-          <div className="grid grid-cols-2 gap-x-12 max-w-[550px]">
+        <div className="flex flex-col items-center xl:flex-row justify-between w-full sm:px-4 md:px-20">
+          <div className="grid max-w-[350px] sm:max-w-[1000px] grid-cols-3 md:grid-cols-4 gap-y-4 xl:grid-cols-2 gap-x-4 mx-auto md:gap-x-12 w-full xl:max-w-[380px]">
             {Object.keys(myImage).map((key, i) => (
               <Category text={key} img={myImage[key]} alt={i} />
             ))}
           </div>
 
-          <div className="flex flex-col w-[720px]">
-            <p className="text-[32px] text-Architects Daughter text-center">
+          <div className="flex flex-col w-full lg:w-[720px] pt-10 xl:pt-0">
+            <p className="text-[27px] sm:text-[30px] md:text-[32px] text-Architects Daughter text-center">
               どんな物件でも大丈夫！{" "}
             </p>
 
-            <p className="text-[22px] pt-[40px] pr-[10px]">
+            <p className="sm:text-[20px] lg:text-[22px] pt-[40px] px-[10px]">
               {" "}
               ふどうさん活市場では、どんな場所でも、どんなに古くても、
               掲載条件はありません。自由に載せていいサイトです。
             </p>
 
-            <div className="grid grid-cols-2 gap-x-8 gap-y-4 pt-20">
+            <div className="grid grid-cols-2 gap-x-2 sm:gap-x-8 gap-y-4 pt-20">
               {myFlag.map((text, index) => (
                 <FlagTextContainer text={text} key={index} />
               ))}
             </div>
           </div>
         </div>
-        <p className="text-[40px] pt-20 text-center ">
+        <p className="text-[22px] sm:text-[32px] md:text-[40px] pt-20 text-center ">
           ふどうさん活市場で売れました！
         </p>
 
-        <div className="grid grid-cols-2 gap-x-12 gap-y-8 pt-20">
+        <div className="grid xl:grid-cols-2 gap-x-12 gap-y-8 pt-20">
           {myArray.map((image, index) => (
             <SoldFeedbackCard img={image} text={text} key={index} />
           ))}
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-8 py-[70px] my-16 bg-[#0D4868] w-[1070px] text-white text-[30px]">
+      <div className="flex flex-col items-center gap-8 py-[30px] md:py-[50px] my-16 bg-[#0D4868] w-[90%] sm:w-[600px] md:w-[720px] lg:w-[900px] xl:w-[1000px] text-white text-[14px] sm:text-[24px] md:text-[30px]">
         <p>個人情報を明かさずに相手とやりとりできます</p>
         <p>契約書類はすべて国家資格の宅建士が作成</p>
         <p>掲載は一切無料</p>
       </div>
 
-      <div className="flex flex-col items-center pb-[50px] bg-white xl:w-[1400px]">
+      {/* <div className="flex flex-col items-center pb-[50px] bg-white xl:w-[1400px]">
         <p className="text-[36px] pt-[80px] text-center">掲載のご依頼</p>
 
         <div className="flex flex-col items-start py-[60px] pl-[80px]">
@@ -311,7 +309,7 @@ const PostREPage = () => {
             </div>
           </div>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 };

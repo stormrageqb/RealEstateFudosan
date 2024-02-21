@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 
 import Carousel from '../components/Carousel'
+import FeedbackCarousel from '../components/FeedbackCarousel';
 const myArray = [
     require("../assets/img/carousel/2.jpg"),
     require("../assets/img/carousel/1.jpg"),
@@ -67,7 +68,7 @@ const FeedbackDetailPage = () => {
             <p className='text-[20px]'><pre>{name} さん   {address}</pre></p>
         </div>
         <div className='pt-[28px] mb-10 w-full'>
-            <Carousel images = {images}/>
+            <FeedbackCarousel images = {images}/>
         </div>
         <div className='flex flex-col items-center w-[1300px] mt-[100px]'>
             <p className='w-[90%] p-2 mb-10 text-xl font-medium'>{shortComment}</p>
