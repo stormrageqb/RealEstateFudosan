@@ -13,6 +13,7 @@ import ConditionForm from "../components/Form/ConditionForm";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 
+import NecessaryTag from "../components/NecessaryTag";
 const myImage = {
   古民家: require("../assets/img/category/1.png"),
   "マンション・ビル": require("../assets/img/category/2.png"),
@@ -198,151 +199,118 @@ const PostREPage = () => {
   };
 
   return (
-    <div className="bg-[#F1F1F1]">
-      <div className="container pt-[50px] ">
-        <div className="bg-white pb-[100px] ">
-          <div className="flex items-center justify-center pt-[100px] pb-[132px]">
-            <span className="text-[48px] pr-[18px]">ふどうさん</span>
-            <span className="text-[32px]">活市場</span>
+    <div className="flex flex-col items-center bg-[#F1F1F1] pt-[100px]">
+      <div className="flex flex-col items-center bg-white xl:w-[1400px] py-[60px] ">
+        <div className="pb-[132px] text-center">
+          <span className="text-[48px] pr-[18px]">ふどうさん</span>
+          <span className="text-[32px]">活市場</span>
+        </div>
+        <div className="flex justify-between w-full px-20">
+          <div className="grid grid-cols-2 gap-x-12 max-w-[550px]">
+            {Object.keys(myImage).map((key, i) => (
+              <Category text={key} img={myImage[key]} alt={i} />
+            ))}
           </div>
-          <div className="flex gap-[163px] ">
-            <div className="w-[550px]  ">
-              {Object.keys(myImage).map((key, i) => (
-                <div className="m-[20px] pl-[40px] inline-block" key={i}>
-                  <Category text={key} img={myImage[key]} alt={i} />
-                </div>
-              ))}
-            </div>
-            <div className="w-[720px] m-[15px]">
-              <div>
-                <p className="text-[32px] text-Architects Daughter text-center">
-                  どんな物件でも大丈夫！{" "}
-                </p>
-              </div>
-              <div>
-                <p className="text-[25px] pt-[54px] pr-[10px]">
-                  {" "}
-                  ふどうさん活市場では、どんな場所でも、どんなに古くても、
-                  掲載条件はありません。自由に載せていいサイトです。
-                </p>
-              </div>
-              <div className="pt-[25px]">
-                {myFlag.map((text, index) => (
-                  <div className="inline-block m-[15px]" key={index}>
-                    <FlagTextContainer text={text} key={index} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="pt-[75px] pb-[63px]">
-              <p className="text-[40px] text-center ">
-                ふどうさん活市場で売れました！
-              </p>
-            </div>
-            <div className="text-center">
-              {myArray.map((image, index) => (
-                <div className="inline-block m-[15px]" key={index}>
-                  <SoldFeedbackCard img={image} text={text} key={index} />
-                </div>
+
+          <div className="flex flex-col w-[720px]">
+            <p className="text-[32px] text-Architects Daughter text-center">
+              どんな物件でも大丈夫！{" "}
+            </p>
+
+            <p className="text-[22px] pt-[40px] pr-[10px]">
+              {" "}
+              ふどうさん活市場では、どんな場所でも、どんなに古くても、
+              掲載条件はありません。自由に載せていいサイトです。
+            </p>
+
+            <div className="grid grid-cols-2 gap-x-8 gap-y-4 pt-20">
+              {myFlag.map((text, index) => (
+                <FlagTextContainer text={text} key={index} />
               ))}
             </div>
           </div>
+        </div>
+        <p className="text-[40px] pt-20 text-center ">
+          ふどうさん活市場で売れました！
+        </p>
+
+        <div className="grid grid-cols-2 gap-x-12 gap-y-8 pt-20">
+          {myArray.map((image, index) => (
+            <SoldFeedbackCard img={image} text={text} key={index} />
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col items-center gap-8 py-[70px] my-16 bg-[#0D4868] w-[1070px] text-white text-[30px]">
+        <p>個人情報を明かさずに相手とやりとりできます</p>
+        <p>契約書類はすべて国家資格の宅建士が作成</p>
+        <p>掲載は一切無料</p>
+      </div>
+
+      <div className="flex flex-col items-center pb-[50px] bg-white xl:w-[1400px]">
+        <p className="text-[36px] pt-[80px] text-center">掲載のご依頼</p>
+
+        <div className="flex flex-col items-start py-[60px] pl-[80px]">
+          <p className="text-[24px] pb-[30px]">
+            どうぞ、ご存じの範囲でありのままご記入ください。
+          </p>
+          <p className="pb-[4px]">※掲載内容は後からでも追記、修正できます。</p>
+          <p className="pb-[4px]">※掲載の休止、終了はいつでも可能です。</p>
+          <p>※どう書いたらいいか分からないなどのご相談もお受けします。</p>
         </div>
 
-        <div className="flex justify-center pt-[70px] pb-[85px]">
-          <div className="text-center  bg-[#0D4868] w-[1070px] text-white">
-            <p className="text-[30px] p-[15px] mt-[15px]">
-              個人情報を明かさずに相手とやりとりできます
-            </p>
-            <p className="text-[30px] p-[15px]">
-              契約書類はすべて国家資格の宅建士が作成
-            </p>
-            <p className="text-[30px] p-[15px] mb-[15px]">掲載は一切無料</p>
-          </div>
-        </div>
-        <div className="pb-[50px]">
-          <div className="bg-white ">
-            <div className="w-[880px] mx-auto">
-              <div>
-                <p className="text-[36px] pt-[80px] text-center">
-                  掲載のご依頼
-                </p>
-              </div>
-              <div className="pt-[60px] flex pl-[80px]">
-                <div>
-                  <p className="text-[24px] pb-[30px]">
-                    どうぞ、ご存じの範囲でありのままご記入ください。
-                  </p>
-                  <p className="pb-[4px]">
-                    ※掲載内容は後からでも追記、修正できます。
-                  </p>
-                  <p className="pb-[4px]">
-                    ※掲載の休止、終了はいつでも可能です。
-                  </p>
-                  <p>
-                    ※どう書いたらいいか分からないなどのご相談もお受けします。
-                  </p>
-                </div>
-              </div>
-              <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className="pt-[120px]">
-                  <PrivacyForm onDataArrayFromChild={handlePrivacyDataArray} />
-                </div>
-                <div className="pt-[53px]">
-                  <ContentForm onDataArrayFromChild={handleContentDataArray} />
-                </div>
-                <div className="pt-[77px]">
-                  {label === "post-building" ? (
-                    <OverviewHouseForm
-                      onDataArrayFromChild={handleOverviewDataArray}
-                    />
-                  ) : (
-                    <OverviewLandForm
-                      onDataArrayFromChild={handleOverviewDataArray}
-                    />
-                  )}
-                </div>
-                <div>
-                  <UploadImageForm
-                    title="物件写真"
-                    button="画像ファイルを選択する"
-                    width1={"w-[800px]"}
-                    width2={"w-[300px]"}
-                    gap={"gap-[35px]"}
-                    onDataArrayFromChild={handleUploadDataArray}
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <ConditionForm
-                    onDataArrayFromChild={handleconditionDataArray}
-                  />
-                </div>
-                <p className="text-center pt-[20px]">{validationMessage}</p>
-                <div className="flex justify-center pt-[80px] pb-[170px]">
-                  {conditionData ? (
-                    <button
-                      type="submit"
-                      className="bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
-                      disabled={!conditionData}
-                    >
-                      提出
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      className=" bg-gray-300 text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
-                      disabled={!conditionData}
-                    >
-                      提出
-                    </button>
-                  )}
-                </div>
-              </form>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <div className="flex flex-col gap-12 items-center w-[90%] sm:w-[600px] md:w-[750px] lg:w-[900px] ">
+            <PrivacyForm onDataArrayFromChild={handlePrivacyDataArray} />
+
+            <ContentForm onDataArrayFromChild={handleContentDataArray} />
+
+            {label === "post-building" ? (
+              <OverviewHouseForm
+                onDataArrayFromChild={handleOverviewDataArray}
+              />
+            ) : (
+              <OverviewLandForm
+                onDataArrayFromChild={handleOverviewDataArray}
+              />
+            )}
+
+<div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
+              <NecessaryTag content={"投稿内容"} />
+              <UploadImageForm
+                title="資格コピー"
+                button="資格のコピーをアップロード"
+                width1={"w-[800px]"}
+                width2={"w-[300px]"}
+                gap={"gap-[35px]"}
+                onDataArrayFromChild={handleUploadDataArray}
+              />
+            </div>
+            <div className="flex justify-center">
+              <ConditionForm onDataArrayFromChild={handleconditionDataArray} />
+            </div>
+            <p className="text-center pt-[20px]">{validationMessage}</p>
+            <div className="flex justify-center pt-[80px] pb-[170px]">
+              {conditionData ? (
+                <button
+                  type="submit"
+                  className="bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
+                  disabled={!conditionData}
+                >
+                  提出
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className=" bg-gray-300 text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
+                  disabled={!conditionData}
+                >
+                  提出
+                </button>
+              )}
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

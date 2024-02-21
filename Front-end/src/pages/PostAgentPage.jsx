@@ -53,10 +53,6 @@ const PROVINCE = [
   "宮崎県",
   "鹿児島県",
   "沖縄県",
-  "豪州",
-  "北米",
-  "欧州",
-  "アジア",
 ];
 
 const PostAgentPage = () => {
@@ -320,7 +316,6 @@ const PostAgentPage = () => {
                   onChange={(e) => handleInputPhoneNumber(0, e.target.value)}
                 />
                 <GoHorizontalRule className="text-3xl font-semibold" />
-                {/* <span className="border-t-2 w-[30px] border-black mt-[15px] mx-[22px]"></span> */}
                 <input
                   placeholder="例:918"
                   required={true}
@@ -330,7 +325,6 @@ const PostAgentPage = () => {
                   onChange={(e) => handleInputPhoneNumber(1, e.target.value)}
                 />
                 <GoHorizontalRule className="text-3xl font-semibold" />
-                {/* <span className="border-t-2 w-[30px] border-black mt-[15px] mx-[21px]"></span> */}
                 <input
                   placeholder="例:0234"
                   required={true}
@@ -344,77 +338,76 @@ const PostAgentPage = () => {
 
             <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
               <NecessaryTag content={"住所"} />
+              <div className="flex flex-col sm:w-[445px] gap-8">
+                <div className="flex items-center w-full justify-between">
+                  <span className="text-[14px] sm:text-[20px]">
+                    郵便番号 - 〒
+                  </span>
+                  <input
+                    placeholder="例:818"
+                    required={true}
+                    type="number"
+                    className="w-[20%] sm:w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
+                    value={postalNumber[0] || ""}
+                    onChange={(e) =>
+                      handleInputPoastalNumber(0, e.target.value)
+                    }
+                  />
+                  <GoHorizontalRule className="text-3xl font-semibold" />
+                  <input
+                    placeholder="例:0424"
+                    required={true}
+                    type="number"
+                    className="w-[20%] sm:w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
+                    value={postalNumber[1] || ""}
+                    onChange={(e) =>
+                      handleInputPoastalNumber(1, e.target.value)
+                    }
+                  />
+                </div>
 
-              <div className="flex items-center w-full justify-between sm:w-[445px]">
-                <span className="text-[14px] sm:text-[20px]">
-                  郵便番号 - 〒
-                </span>
-                <input
-                  placeholder="例:818"
-                  required={true}
-                  type="number"
-                  className="w-[20%] sm:w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
-                  value={postalNumber[0] || ""}
-                  onChange={(e) => handleInputPoastalNumber(0, e.target.value)}
-                />
-                <GoHorizontalRule className="text-3xl font-semibold" />
-                <input
-                  placeholder="例:0124"
-                  required={true}
-                  type="number"
-                  className="w-[20%] sm:w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
-                  value={postalNumber[1] || ""}
-                  onChange={(e) => handleInputPoastalNumber(1, e.target.value)}
-                />
+                <div className=" flex items-center justify-between w-full">
+                  <p className="text-[20px] ">都道府県</p>
+                  <select
+                    className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px]"
+                    onChange={(event) => setProvince(event.target.value)}
+                    required={true}
+                    defaultValue={province}
+                  >
+                    <option className="text-[16px]" value="">
+                      &nbsp;
+                    </option>
+                    {PROVINCE.map((province, index) => (
+                      <option className="text-[16px]" value={province}>
+                        &nbsp;{province}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className=" flex items-center justify-between w-full">
+                  <p className="text-[20px] ">市区町村</p>
+                  <input
+                    placeholder="例:町名番地"
+                    required={true}
+                    type="text"
+                    className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px]"
+                    onChange={(e) => setCity(e.target.value)}
+                  />
+                </div>
+
+                <div className=" flex items-center justify-between w-full">
+                  <p className="text-[20px] ">町名番地</p>
+                  <input
+                    placeholder="例:6 Chome-19-19 Futsukaichikita"
+                    required={true}
+                    type="text"
+                    className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px]"
+                    onChange={(e) => setStreet(e.target.value)}
+                  />
+                </div>
               </div>
             </div>
-
-            {/* <div className=" w-[900px] ml-[200px]  flex gap-[169px] pt-[40px] justify-end">
-            <div className=" flex items-center justify-between ">
-              <p className="text-[20px] ">都道府県</p>
-              <select
-                className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]"
-                onChange={(event) => setProvince(event.target.value)}
-                required={true}
-                defaultValue={province}
-              >
-                <option className="text-[16px]" value="">
-                  &nbsp;
-                </option>
-                {PROVINCE.map((province, index) => (
-                  <option className="text-[16px]" value={province}>
-                    &nbsp;{province}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className=" w-[900px] ml-[200px]  flex gap-[169px] pt-[40px] justify-end ">
-            <div className=" flex items-center justify-between ">
-              <p className="text-[20px] ">市区町村</p>
-              <input
-                placeholder="例:町名番地"
-                required={true}
-                type="text"
-                className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]"
-                onChange={(e) => setCity(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className=" w-[900px] ml-[200px]  flex gap-[169px] pt-[40px] justify-end">
-            <div className=" flex items-center justify-between ">
-              <p className="text-[20px] ">町名番地</p>
-              <input
-                placeholder="例:6 Chome-19-19 Futsukaichikita"
-                required={true}
-                type="text"
-                className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px] ml-[95px]"
-                onChange={(e) => setStreet(e.target.value)}
-              />
-            </div>
-          </div> */}
 
             <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
               <NecessaryTag content={"投稿内容"} />
