@@ -84,7 +84,7 @@ const UploadImageForm = ({
               onChange={InputChange}
               multiple
             />
-            <span className="text-white mx-auto py-[6px] px-[40px] rounded-md cursor-pointer bg-[#2A6484]/70">
+            <span className="text-white mx-auto py-[6px] px-[35px] rounded-md cursor-pointer bg-[#2A6484]/70">
               {button}
             </span>
           </div>

@@ -197,7 +197,7 @@ const PostREPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#F1F1F1] pt-[100px]">
+    <div className="flex flex-col items-center bg-[#F1F1F1] py-[100px]">
       <div className="flex flex-col items-center bg-white w-[90%] sm:w-[600px] md:w-[750px] lg:w-[900px] xl:w-[1400px] py-[100px] ">
         <div className="pb-[80px] text-center">
           <span className="text-[32px] sm:text-[48px] pr-[18px]">ふどうさん</span>
@@ -245,20 +245,24 @@ const PostREPage = () => {
         <p>掲載は一切無料</p>
       </div>
 
-      {/* <div className="flex flex-col items-center pb-[50px] bg-white xl:w-[1400px]">
+      <div className="flex flex-col items-center pb-[50px] bg-white w-[90%] sm:w-[600px] md:w-[750px] lg:w-[950px] xl:w-[1400px]">
         <p className="text-[36px] pt-[80px] text-center">掲載のご依頼</p>
 
-        <div className="flex flex-col items-start py-[60px] pl-[80px]">
-          <p className="text-[24px] pb-[30px]">
+        <div className="flex flex-col items-start py-[60px] pl-[30px] sm:pl-[80px]">
+          <p className="text-[13px] sm:text-[18px] md:text-[24px] pb-[30px]">
             どうぞ、ご存じの範囲でありのままご記入ください。
           </p>
-          <p className="pb-[4px]">※掲載内容は後からでも追記、修正できます。</p>
-          <p className="pb-[4px]">※掲載の休止、終了はいつでも可能です。</p>
-          <p>※どう書いたらいいか分からないなどのご相談もお受けします。</p>
+          <p className="text-[13px] text-base pb-[4px]">
+            ※掲載内容は後からでも追記、修正できます。
+          </p>
+          <p className="text-[13px] text-base pb-[4px]">
+            ※掲載の休止、終了はいつでも可能です。
+          </p>
+          <p className="text-[13px] text-base pb-[4px]">※どう書いたらいいか分からないなどのご相談もお受けします。</p>
         </div>
 
         <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <div className="flex flex-col gap-12 items-center w-[90%] sm:w-[600px] md:w-[750px] lg:w-[900px] ">
+          <div className="flex flex-col gap-12 items-center w-[90%] mx-auto  sm:w-[600px] md:w-[750px] lg:w-[900px] ">
             <PrivacyForm onDataArrayFromChild={handlePrivacyDataArray} />
 
             <ContentForm onDataArrayFromChild={handleContentDataArray} />
@@ -273,7 +277,7 @@ const PostREPage = () => {
               />
             )}
 
-<div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
+            <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
               <NecessaryTag content={"投稿内容"} />
               <UploadImageForm
                 title="資格コピー"
@@ -284,9 +288,9 @@ const PostREPage = () => {
                 onDataArrayFromChild={handleUploadDataArray}
               />
             </div>
-            <div className="flex justify-center">
-              <ConditionForm onDataArrayFromChild={handleconditionDataArray} />
-            </div>
+
+            <ConditionForm onDataArrayFromChild={handleconditionDataArray} />
+
             <p className="text-center pt-[20px]">{validationMessage}</p>
             <div className="flex justify-center pt-[80px] pb-[170px]">
               {conditionData ? (
@@ -309,7 +313,7 @@ const PostREPage = () => {
             </div>
           </div>
         </form>
-      </div> */}
+      </div>
     </div>
   );
 };

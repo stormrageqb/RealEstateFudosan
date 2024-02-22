@@ -277,9 +277,9 @@ export default function PrivacyForm(props) {
           </div>
 
           <div className=" flex items-center justify-between w-full">
-            <p className="text-[20px] ">都道府県</p>
+            <p className="text-base sm:text-[20px] ">都道府県</p>
             <select
-              className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px]"
+              className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[200px] sm:w-[272px]"
               onChange={(event) => setProvince(event.target.value)}
               required={true}
               defaultValue={province}
@@ -296,30 +296,30 @@ export default function PrivacyForm(props) {
           </div>
 
           <div className=" flex items-center justify-between w-full">
-            <p className="text-[20px] ">市区町村</p>
+            <p className="text-base sm:text-[20px] ">市区町村</p>
             <input
               placeholder="例:町名番地"
               required={true}
               type="text"
-              className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px]"
+              className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[200px] sm:w-[272px]"
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
 
           <div className=" flex items-center justify-between w-full">
-            <p className="text-[20px] ">町名番地</p>
+            <p className="text-base sm:text-[20px] ">町名番地</p>
             <input
               placeholder="例:6 Chome-19-19 Futsukaichikita"
               required={true}
               type="text"
-              className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px]"
+              className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[200px] sm:w-[272px]"
               onChange={(e) => setStreet(e.target.value)}
             />
           </div>
         </div>
       </div>
 
-      <div className=" w-[745px] flex flex-col pt-[24px] text-[20px]">
+      <div className=" lg:w-[745px] flex flex-col pt-[24px] text-[16px] lg:text-[20px]">
         <p>物件の住所を記入してください。</p>
         <p>※ ご自分の住所の記入欄ではありません</p>
         <p>※ この住所がそのままサイトに掲載されてしまうことはありません </p>

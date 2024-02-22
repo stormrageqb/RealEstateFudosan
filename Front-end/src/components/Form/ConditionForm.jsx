@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import NecessaryTag from "../NecessaryTag";
 
 export default function ConditionForm({ content, onDataArrayFromChild }) {
   const [isChecked, setIsChecked] = useState(false);
@@ -11,37 +12,28 @@ export default function ConditionForm({ content, onDataArrayFromChild }) {
     onDataArrayFromChild(isChecked);
   }, [isChecked]);
   return (
-    <div>
-      <div className="w-full sm:w-[500px] md:w-[600px]  bg-[#D9D9D9]/40 pt-4 pb-3">
-        <div className="flex ml-[50px]">
-          <div className=" pr-[56px] ">
-            <span className="bg-[#F69191] h-[28px] flex items-center p-2 rounded-md text-[15px] mx-[12px] text-white">
-              必須
-            </span>
-          </div>
-          <div>
-            <p>以下の同意事項をご確認ください。</p>
-          </div>
-        </div>
-        <div className="pb-[12px]">
-          <p className="pl-[35px] pt-[19px] pb-[6px]">同意事項</p>
-          <p className=" px-[35px]">
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-            テキスト テキスト テキスト テキスト テキスト テキスト テキスト
-          </p>
-        </div>
-        <div className="flex justify-center pb-3">
-          <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-          />
-          <p className="text-[14px] pl-[5px]">
-            上記規約・個人情報の取扱いについて同意します。
-          </p>
-        </div>
+    <div className="flex flex-col w-full sm:w-[500px] md:w-[600px]  bg-[#D9D9D9]/40 pt-4 pb-3">
+      <div className="flex justify-start pl-6 pb-2">
+        <NecessaryTag />
+        <p className="hidden sm:block pl-6">以下の同意事項をご確認ください。</p>
+      </div>
+      <p className="block sm:hidden text-center text-sm pb-2">以下の同意事項をご確認ください。</p>
+      {/* <p className="pl-[35px] pt-[19px] pb-[6px]">同意事項</p> */}
+      <p className="w-[90%] mx-auto text-sm">
+        テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト テキスト テキスト テキスト テキスト
+        テキスト テキスト テキスト テキスト
+      </p>
+      <div className="flex pl-2 sm:pl-10 pt-4">
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+        <p className="text-xs sm:text-[14px] pl-1 sm:pl-[5px]">
+          上記規約・個人情報の取扱いについて同意します。
+        </p>
       </div>
     </div>
   );
