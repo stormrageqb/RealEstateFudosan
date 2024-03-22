@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
         default: false,
     },
     phoneNumber: {
-        type: Number,
+        type: String,
     },
     favourites: [{
         type: Schema.Types.ObjectId,

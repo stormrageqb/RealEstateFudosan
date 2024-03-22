@@ -16,7 +16,7 @@ const DashboardPage = () => {
             try {
                 const params = new URLSearchParams({
                     firstNumber: '1',
-                    lastNumber: '16'
+                    lastNumber: '12'
                 }).toString();
                 const res = await axios.get(`/getRealEstates?${params}`);
                 setRealEstates(res.data);

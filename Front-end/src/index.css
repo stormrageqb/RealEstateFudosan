@@ -123,6 +123,10 @@ td{
   transition: all 0.3s;
 }
 
+.container{
+  margin-inline: auto;
+}
+
 .page-item.arrow-icon:after {
   content: "";
   width: 25px;
@@ -371,7 +375,6 @@ a, a:hover, a:focus {
   height: auto;
 }
 
-/* --------Star Icon------------- */
 
 .starred {
   animation: spin .6s forwards;

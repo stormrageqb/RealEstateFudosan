@@ -28,6 +28,8 @@ import FeedbackPage from "./pages/FeedbackPage";
 import NotFoundPages from "./pages/404pages";
 import AdminGeneralContactBoardPage from "./pages/AdminGeneralContactBoardPage"
 import AdminPostContactBoardPage from "./pages/AdminPostContactBoardPage";
+import IntroducePage from './pages/IntroducePage'
+
 
 import { useCookies } from "react-cookie";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
@@ -76,6 +78,8 @@ const Path = () => {
         <Route exact path="/admin-contact-agent" component={AdminContactAgentPage} />
         <Route exact path="/admin-general-contact-board" component={AdminGeneralContactBoardPage} />
         <Route exact path="/admin-post-contact-board" component={AdminPostContactBoardPage} />
+        <Route exact path="/introduce" component={IntroducePage} />
+       
         
         <Route exact path="/*" component={NotFoundPages} />
 

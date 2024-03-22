@@ -59,12 +59,26 @@ const PostREPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const label = searchParams.get("label");
-  const [privacyDataArray, setPrivacyDataArray] = useState();
+  const [privacyDataArray, setPrivacyDataArray] = useState({
+    firstNameGana: '',
+    firstNameGanji: '',
+    lastNameGana: '',
+    lastNameGanji: '',
+    age: '',
+    email: '',
+    phoneNumber: [null, null, null],
+    postalNumber: [null, null],
+    province: '',
+    city: '',
+    street: ''
+  });
   const [contentDataArray, setContentDataArray] = useState([]);
   const [overviewDataArray, setOverviewDataArray] = useState([]);
   const [uploadDataArray, setUploadDataArray] = useState([]);
   const [conditionData, setConditionData] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
+  const [isShow, setIsShow] = useState('false');
+  
 
   useEffect(() => {
     window.scrollTo({
@@ -72,6 +86,26 @@ const PostREPage = () => {
       behavior: "smooth", // Scroll smoothly to the top
     });
   }, [label]);
+
+  useEffect(() => {
+  const isFormComplete =
+    privacyDataArray.firstNameGana.trim().length !== 0 &&
+    privacyDataArray.firstNameGanji.trim().length !== 0 &&
+    privacyDataArray.lastNameGana.trim().length !== 0 &&
+    privacyDataArray.lastNameGanji.trim().length !== 0 &&
+    privacyDataArray.age.trim().length !== 0 &&
+    privacyDataArray.phoneNumber[0] !== null &&
+    privacyDataArray.phoneNumber[1] !== null &&
+    privacyDataArray.phoneNumber[2] !== null &&
+    privacyDataArray.postalNumber[0] !== null &&
+    privacyDataArray.postalNumber[1] !== null &&
+    privacyDataArray.province !== '' &&
+    privacyDataArray.city.trim().length !== 0 &&
+    privacyDataArray.street.trim().length !== 0;
+
+  setIsShow(isFormComplete ? "true" : "false");
+}, [privacyDataArray]);
+
 
   const handlePrivacyDataArray = (data) => {
     setPrivacyDataArray(data);
@@ -88,40 +122,122 @@ const PostREPage = () => {
   const handleconditionDataArray = (data) => {
     setConditionData(data);
   };
-
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setValidationMessage("");
+    if (!privacyDataArray.firstNameGana || privacyDataArray.firstNameGana.trim().length === 0) 
+      return setValidationMessage("名前を正しく入力してください。");
+    
+    if (!privacyDataArray.firstNameGanji || privacyDataArray.firstNameGanji.trim().length === 0) 
+    return setValidationMessage("名前を正しく入力してください。");
+    
+    if (!privacyDataArray.lastNameGana || privacyDataArray.lastNameGana.trim().length === 0) 
+    return setValidationMessage("名前を正しく入力してください。");
+    
+    if (!privacyDataArray.lastNameGanji || privacyDataArray.lastNameGanji.trim().length === 0) 
+    return setValidationMessage("名前を正しく入力してください。");
+    
     if (privacyDataArray.age > 100 || privacyDataArray.age < 10)
       return setValidationMessage("あなたの年齢を正しく入力してください!");
+
     if (!privacyDataArray.email.includes("@"))
       return setValidationMessage("メールアドレスを正しく入力してください。");
+
+    if ((typeof (privacyDataArray.phoneNumber[0]) === 'undefined') || (privacyDataArray.phoneNumber[0] === null)) {
+      return setValidationMessage("電話番号を入力してください。")
+    }
+    if ((typeof (privacyDataArray.phoneNumber[1]) === 'undefined') || (privacyDataArray.phoneNumber[1] === null)) {
+      return setValidationMessage("電話番号を入力してください。")
+    }
+    if ((typeof (privacyDataArray.phoneNumber[2]) === 'undefined') || (privacyDataArray.phoneNumber[2] === null)) {
+      return setValidationMessage("電話番号を入力してください。")
+    }
+    
     if (
-      Math.abs(privacyDataArray.phoneNumber[0]).toString().trim().length > 3 ||
-      Math.abs(privacyDataArray.phoneNumber[0]).toString().trim().length < 2 ||
-      Math.abs(privacyDataArray.phoneNumber[1]).toString().trim().length > 4 ||
-      Math.abs(privacyDataArray.phoneNumber[1]).toString().trim().length < 2 ||
-      Math.abs(privacyDataArray.phoneNumber[2]).toString().trim().length !== 4
+      (privacyDataArray.phoneNumber[0]).toString().trim().length > 3 ||
+      (privacyDataArray.phoneNumber[0]).toString().trim().length < 2 ||
+      (privacyDataArray.phoneNumber[1]).toString().trim().length > 4 ||
+      (privacyDataArray.phoneNumber[1]).toString().trim().length < 2 ||
+      (privacyDataArray.phoneNumber[2]).toString().trim().length !== 4
     )
       return setValidationMessage("電話番号を正確に入力してください！");
+    
+    if ((typeof (privacyDataArray.postalNumber[0]) === 'undefined') || (privacyDataArray.postalNumber[0] === null)) {
+      return setValidationMessage("郵便番号を入力してください。")
+    }
+    if ((typeof (privacyDataArray.postalNumber[1]) === 'undefined') || (privacyDataArray.postalNumber[1] === null)) {
+      return setValidationMessage("郵便番号を入力してください。")
+    }
+
     if (
-      Math.abs(privacyDataArray.postalNumber[0]).toString().trim().length !==
-        3 ||
-      Math.abs(privacyDataArray.postalNumber[1]).toString().trim().length !== 4
+      (privacyDataArray.postalNumber[0]).toString().trim().length !==3 ||
+      (privacyDataArray.postalNumber[1]).toString().trim().length !== 4
     )
       return setValidationMessage("郵便番号を正しく入力してください!");
 
+    if (privacyDataArray.province === '') 
+    return setValidationMessage("都道府県を選択してください。");
+    
+    if (!privacyDataArray.city || privacyDataArray.city.trim().length === 0) 
+    return setValidationMessage("市区町村を入力してください。");
+    
+    if (!privacyDataArray.street || privacyDataArray.street.trim().length === 0) 
+    return setValidationMessage("町名番地を入力してください。");
+
+    if (!contentDataArray.briefDescription || contentDataArray.briefDescription.trim().length === 0) 
+    return setValidationMessage("不動産の私たちと良い点を入力してください。");
+
+    if (!contentDataArray.fullDescription || contentDataArray.fullDescription.trim().length === 0) 
+    return setValidationMessage("これまでの経緯と今の状況を入力してください。");
+
+    if (!overviewDataArray.budget || overviewDataArray.budget.trim().length === 0) 
+    return setValidationMessage("希望の価格を入力してください。");
+
+    if (!overviewDataArray.landarea || overviewDataArray.landarea.trim().length === 0) 
+    return setValidationMessage("土地面積を入力してください。");
+
+    if(label==="post-building"){
+
+      if (!overviewDataArray.layout || overviewDataArray.layout.trim().length === 0) 
+      return setValidationMessage("レイアウトを入力してください。");
+     
+      if (!overviewDataArray.buildingarea || overviewDataArray.buildingarea.trim().length === 0) 
+      return setValidationMessage("建物面積を入力してください。");
+
+      if (!overviewDataArray.deadline || overviewDataArray.deadline.trim().length === 0) 
+      return setValidationMessage("入居日付を入力してください。");
+    
+      if (!overviewDataArray.parking || overviewDataArray.parking.trim().length === 0) 
+      return setValidationMessage("駐車場の数を入力してください。");
+    }
+
+    if(label === "post-land"){
+
+      if (!overviewDataArray.buildingCoverageRatio || overviewDataArray.buildingCoverageRatio.trim().length === 0) 
+      return setValidationMessage("乾閉率を入力してください。");
+      
+      if (!overviewDataArray.floorAreaRatio || overviewDataArray.floorAreaRatio.trim().length === 0) 
+      return setValidationMessage("容積率を入力してください。");
+      
+      if (!overviewDataArray.structure || overviewDataArray.structure.trim().length === 0) 
+      return setValidationMessage("構造を入力してください。");
+    }
+
+    if (uploadDataArray.length === 0) 
+    return setValidationMessage("画像ファイルをアップロードしてください。");
+
+
     try {
-      const newphoneNumber = parseInt(
+      const newphoneNumber = 
         privacyDataArray.phoneNumber[0].toString() +
           privacyDataArray.phoneNumber[1].toString() +
-          privacyDataArray.phoneNumber[2].toString()
-      );
-      const newpostalNumber = parseInt(
+          privacyDataArray.phoneNumber[2].toString();
+      const newpostalNumber =
         privacyDataArray.postalNumber[0].toString() +
-          privacyDataArray.postalNumber[1].toString()
-      );
+          privacyDataArray.postalNumber[1].toString();
       const newId = cookies.user._id;
       const name = {
         firstNameGana: privacyDataArray.firstNameGana,
@@ -196,6 +312,9 @@ const PostREPage = () => {
     }
   };
 
+  
+
+
   return (
     <div className="flex flex-col items-center bg-[#F1F1F1] py-[100px]">
       <div className="flex flex-col items-center bg-white w-[90%] sm:w-[600px] md:w-[750px] lg:w-[900px] xl:w-[1400px] py-[100px] ">
@@ -206,7 +325,7 @@ const PostREPage = () => {
         <div className="flex flex-col items-center xl:flex-row justify-between w-full sm:px-4 md:px-20">
           <div className="grid max-w-[350px] sm:max-w-[1000px] grid-cols-3 md:grid-cols-4 gap-y-4 xl:grid-cols-2 gap-x-4 mx-auto md:gap-x-12 w-full xl:max-w-[380px]">
             {Object.keys(myImage).map((key, i) => (
-              <Category text={key} img={myImage[key]} alt={i} />
+              <Category text={key} img={myImage[key]} key={i} alt={i} />
             ))}
           </div>
 
@@ -248,69 +367,85 @@ const PostREPage = () => {
       <div className="flex flex-col items-center pb-[50px] bg-white w-[90%] sm:w-[600px] md:w-[750px] lg:w-[950px] xl:w-[1400px]">
         <p className="text-[36px] pt-[80px] text-center">掲載のご依頼</p>
 
-        <div className="flex flex-col items-start py-[60px] pl-[30px] sm:pl-[80px]">
-          <p className="text-[13px] sm:text-[18px] md:text-[24px] pb-[30px]">
+        <div className="flex flex-col  py-[60px] pl-[30px] sm:pl-[80px]">
+          <p className="text-[18px] flex justify-center sm:text-[18px] md:text-[24px] pb-[30px]">
             どうぞ、ご存じの範囲でありのままご記入ください。
           </p>
-          <p className="text-[13px] text-base pb-[4px]">
+          <p className="text-[18px] text-base pb-[4px]">
             ※掲載内容は後からでも追記、修正できます。
           </p>
-          <p className="text-[13px] text-base pb-[4px]">
+          <p className="text-[18px] text-base pb-[4px]">
             ※掲載の休止、終了はいつでも可能です。
           </p>
-          <p className="text-[13px] text-base pb-[4px]">※どう書いたらいいか分からないなどのご相談もお受けします。</p>
+          <p className="text-[18px] text-base pb-[4px]">※どう書いたらいいか分からないなどのご相談もお受けします。</p>
+        </div>
+
+        <div className="flex flex-col  py-[60px] pl-[30px] sm:pl-[80px] pb-[50px]">
+          <p className="text-[18px] text-center sm:text-[18px] md:text-[24px] pb-[30px]">掲載方法</p>
+          <p className="text-[18px] text-base">
+          ※氏名は正確に（住民票など記載のもの）ご入力ください。
+          </p>
+          <p className="text-[18px] text-base pb-[4px]">
+          ※お名前や電話番号などは、商談相手に伝わらないようになっています。
+          </p>
+          <p className="text-[18px] text-base pb-[4px]">
+            ※自分の住所ではなく、不動産住所を入力してください。
+            <br/>※ この住所がそのままサイトに掲載されてしまうことはありません</p>
         </div>
 
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="flex flex-col gap-12 items-center w-[90%] mx-auto  sm:w-[600px] md:w-[750px] lg:w-[900px] ">
             <PrivacyForm onDataArrayFromChild={handlePrivacyDataArray} />
+            {isShow === "true" ?(<div className="flex flex-col gap-12 items-center w-[90%] mx-auto  sm:w-[600px] md:w-[750px] lg:w-[900px] ">
 
-            <ContentForm onDataArrayFromChild={handleContentDataArray} />
+              <ContentForm onDataArrayFromChild={handleContentDataArray} />
 
-            {label === "post-building" ? (
-              <OverviewHouseForm
-                onDataArrayFromChild={handleOverviewDataArray}
-              />
-            ) : (
-              <OverviewLandForm
-                onDataArrayFromChild={handleOverviewDataArray}
-              />
-            )}
-
-            <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
-              <NecessaryTag content={"投稿内容"} />
-              <UploadImageForm
-                title="資格コピー"
-                button="資格のコピーをアップロード"
-                width1={"w-[800px]"}
-                width2={"w-[300px]"}
-                gap={"gap-[35px]"}
-                onDataArrayFromChild={handleUploadDataArray}
-              />
-            </div>
-
-            <ConditionForm onDataArrayFromChild={handleconditionDataArray} />
-
-            <p className="text-center pt-[20px]">{validationMessage}</p>
-            <div className="flex justify-center pt-[80px] pb-[170px]">
-              {conditionData ? (
-                <button
-                  type="submit"
-                  className="bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
-                  disabled={!conditionData}
-                >
-                  提出
-                </button>
+              {label === "post-building" ? (
+                <OverviewHouseForm
+                  onDataArrayFromChild={handleOverviewDataArray}
+                />
               ) : (
-                <button
-                  type="submit"
-                  className=" bg-gray-300 text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
-                  disabled={!conditionData}
-                >
-                  提出
-                </button>
+                <OverviewLandForm
+                  onDataArrayFromChild={handleOverviewDataArray}
+                />
               )}
-            </div>
+
+              <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
+                <NecessaryTag content={"画像"} />
+                <UploadImageForm
+                  title="資格コピー"
+                  button="資格のコピーをアップロード"
+                  width1={"w-[800px]"}
+                  width2={"w-[300px]"}
+                  gap={"gap-[35px]"}
+                  onDataArrayFromChild={handleUploadDataArray}
+                />
+              </div>
+
+              <ConditionForm onDataArrayFromChild={handleconditionDataArray} />
+
+              <p className="text-center pt-[20px] text-[24px] text-yellow-700">{validationMessage}</p>
+              <div className="flex justify-center pt-[80px] pb-[170px]">
+                {conditionData ? (
+                  <button
+                    type="submit"
+                    className="  text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
+                    disabled={!conditionData}
+                  >
+                    提出
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className=" bg-gray-300 text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
+                    disabled={!conditionData}
+                  >
+                    提出
+                  </button>
+                )}
+              </div>
+            </div>):" "
+            }
           </div>
         </form>
       </div>

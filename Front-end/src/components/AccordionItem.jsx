@@ -5,6 +5,8 @@ const AccordionItem = (props) => {
   const { handleToggle, active, faq } = props;
   const { header, id, text } = faq;
 
+  console.log(faq)
+
   return (
     <div className="border border-solid border-gray-300 rounded-md mb-[10px] overflow-hidden">
       <div

@@ -78,9 +78,7 @@ export default function OverviewHouseForm(props) {
             onChange={(e) => setParking(e.target.value)}
           />
         </div>
-        <span className="text-[14px] ">
-          よく分からないところや、サイトに表示させたくない項目は空欄でも構いません
-        </span>
+        
       </div>
     </div>
   );

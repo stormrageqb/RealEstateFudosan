@@ -4,6 +4,7 @@ import {
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
 import axios from "axios";
+import AgentBoard from "../components/AgentBoard"
 
 import SearchBoard from "../components/SearchBoard";
 import Pagination from "../components/Pagination";
@@ -166,84 +167,91 @@ const ItemListPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center pt-20">
-      <p className="font-medium text-[36px]">{filterContent}</p>
-      {realEstates.length !== 0 && (
-        <div className="flex justify-center items-center gap-10 mt-16">
-          <Pagination
-            active={active}
-            size={Math.ceil(totalNumber / numberPerPage)}
-            step={2}
-            onClickHandler={activeHandler}
-          />
-          <i
-            className="fa-solid fa-magnifying-glass text-[30px] cursor-pointer"
-            onClick={magnifierToggleHandler}
-          ></i>
-        </div>
-      )}
+    <div className="flex justify-between">
 
-      {magnifierIsOppen && (
-        <SearchBoard
-          fetchDataInSearchMode={fetchDataInSearchMode}
-          setIsSearchMode={setIsSearchMode}
-          setCeilBudget={setCeilBudget}
-          setFloorBudget={setFloorBudget}
-          setShowRealEstateWithoutBudget={setShowRealEstateWithoutBudget}
-          setDisplayOrder={setDisplayOrder}
-          setDisplayOrderDependency={setDisplayOrderDependency}
-          test={test}
-          magnifierToggleHandler={magnifierToggleHandler}
-        />
-      )}
-
-      <div className="flex flex-col items-center w-full min-h-[600px]">
-        <div
-          className={`grid gap-x-8 gap-y-12  mt-3 mb-5 mx-auto box-border max-w-[1100px]
-                ${
-                  (windowWidthLabel === "xl" || windowWidthLabel === "lg") &&
-                  realEstates.length > 3
-                    ? "grid-cols-4"
-                    : windowWidthLabel === "md" && realEstates.length > 2
-                    ? "grid-cols-3"
-                    : windowWidthLabel === "sm" && realEstates.length > 1
-                    ? "grid-cols-2"
-                    : "grid-cols-1"
-                }`}
-        >
-          {realEstates.map((realEstate, index) => {
-            return (
-              <div
-                key={index}
-                onClick={() => handleRealEstateCardClicked(index)}
-                className="cursor-pointer"
-              >
-                <RealEstateSmallCard realEstate={realEstate} />
-              </div>
-            );
-          })}
-        </div>
-        {realEstates.length === 0 && (
-          <div className="pt-[100px] text-3xl font-medium">
-            {filterContent}の不動産はありません。
+      <div className="flex flex-col items-center pt-20 ml-[100px]">
+        <p className="font-medium text-[36px]">{filterContent}</p>
+        {realEstates.length !== 0 && (
+          <div className="flex justify-center items-center gap-10 mt-16">
+            <Pagination
+              active={active}
+              size={Math.ceil(totalNumber / numberPerPage)}
+              step={2}
+              onClickHandler={activeHandler}
+            />
+            <i
+              className="fa-solid fa-magnifying-glass text-[30px] cursor-pointer"
+              onClick={magnifierToggleHandler}
+            ></i>
           </div>
         )}
-      </div>
 
-      {realEstates.length > 8 && (
-        <div className="flex justify-center items-center gap-10 pb-16">
-          <Pagination
-            active={active}
-            size={Math.ceil(totalNumber / numberPerPage)}
-            step={2}
-            onClickHandler={activeHandler}
+        {magnifierIsOppen && (
+          <SearchBoard
+            fetchDataInSearchMode={fetchDataInSearchMode}
+            setIsSearchMode={setIsSearchMode}
+            setCeilBudget={setCeilBudget}
+            setFloorBudget={setFloorBudget}
+            setShowRealEstateWithoutBudget={setShowRealEstateWithoutBudget}
+            setDisplayOrder={setDisplayOrder}
+            setDisplayOrderDependency={setDisplayOrderDependency}
+            test={test}
+            magnifierToggleHandler={magnifierToggleHandler}
           />
-          <i
-            className="fa-solid fa-magnifying-glass text-[35px] cursor-pointer"
-            onClick={magnifierToggleHandler}
-          ></i>
+        )}
+
+        <div className="flex flex-col items-center w-full min-h-[600px]">
+          <div
+            className={`grid gap-x-8 gap-y-12  mt-3 mb-5 mx-auto box-border max-w-[1100px]
+                  ${
+                    (windowWidthLabel === "xl" || windowWidthLabel === "lg") &&
+                    realEstates.length > 3
+                      ? "grid-cols-4"
+                      : windowWidthLabel === "md" && realEstates.length > 2
+                      ? "grid-cols-3"
+                      : windowWidthLabel === "sm" && realEstates.length > 1
+                      ? "grid-cols-2"
+                      : "grid-cols-1"
+                  }`}
+          >
+            {realEstates.map((realEstate, index) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => handleRealEstateCardClicked(index)}
+                  className="cursor-pointer"
+                >
+                  <RealEstateSmallCard realEstate={realEstate} />
+                </div>
+              );
+            })}
+          </div>
+          {realEstates.length === 0 && (
+            <div className="pt-[100px] text-3xl font-medium">
+              {filterContent}の不動産はありません。
+            </div>
+          )}
         </div>
-      )}
+
+        {realEstates.length > 8 && (
+          <div className="flex justify-center items-center gap-10 pb-16">
+            <Pagination
+              active={active}
+              size={Math.ceil(totalNumber / numberPerPage)}
+              step={2}
+              onClickHandler={activeHandler}
+            />
+            <i
+              className="fa-solid fa-magnifying-glass text-[35px] cursor-pointer"
+              onClick={magnifierToggleHandler}
+            ></i>
+          </div>
+        )}
+        
+      </div>
+      <div className='mt-[75px] mr-[100px]' > 
+        <AgentBoard />
+      </div>
     </div>
   );
 };

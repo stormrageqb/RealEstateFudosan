@@ -161,7 +161,7 @@ const MessageBoardPage = () => {
             defaultValue={"すべて表示"}
           >
             {SELECT_OPTION.map((option, index) => (
-              <option className="text-[16px] pl-4" value={option}>
+              <option className="text-[16px] pl-4" key = "index" value={option}>
                 {option}
               </option>
             ))}

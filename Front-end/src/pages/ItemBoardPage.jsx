@@ -162,10 +162,10 @@ const ItemBoardPage = () => {
           displayAgents ? "gap-2" : "gap-40"
         } `}
       >
-        <div className="hidden lg:block w-[480px] pt-[100px]">
+        <div className=" grid-cols-2 hidden lg:grid gap-x-12 mr-4 max-w-[480px] pt-[100px]">
           {Object.keys(myImage).map((key, i) => (
             <div
-              className="mb-[27px] ml-[15px] inline-block cursor-pointer"
+              className="inline-block cursor-pointer"
               key={i}
             >
               <Category
@@ -254,15 +254,15 @@ const ItemBoardPage = () => {
           エージェントを見る
         </div>
         {displayAgents && (
-          <div className="hidden xl:block relative mt-4 mb-[24px] p-2  bg-white shadow-lg rounded-2xl">
+          <div className="hidden xl:block relative mt-4 mb-[24px] ml-10 p-2  bg-white shadow-lg rounded-2xl">
             <div
               className="absolute top-4 right-6 text-sm font-bold cursor-pointer"
               onClick={() => handleDisplayAgentsToggle(false)}
             >
               隠れる<div className="pl-2 fa-solid fa-arrow-right"></div>
             </div>
-            <div className="flex flex-col items-center w-[600px] h-[800px]  pt-[50px] pb-[55px] bg-white text-center  overflow-y-scroll no-scrollbar">
-              <div className="flex relative border-b-2 pt-[2px] border-black w-[500px] font-medium transition-all duration-300">
+            <div className="flex flex-col items-center w-[500px] h-[800px]  pt-[50px] pb-[55px] bg-white text-center  overflow-y-scroll no-scrollbar">
+              <div className="flex relative border-b-2 pt-[2px] border-black w-[400px] font-medium transition-all duration-300">
                 <span
                   className=" w-[33%] cursor-pointer pb-3"
                   onClick={() => setActiveAgentCategory("不動産業者")}

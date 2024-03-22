@@ -13,7 +13,6 @@ initializeApp();
 
 function App() {
   const isOpen = useSelector((state) => state.navbarToggle.isOpen);
-  console.log("isOpen", isOpen);
   return (
     <Router history={history}>
       <div className="relative w-full h-auto">
@@ -21,7 +20,7 @@ function App() {
         <Path />
         <Footer />
         {isOpen && (
-          <div className="block relative md:hidden w-full h-full">
+          <div className="block relative lg:hidden w-full h-full">
             <Navmenu />
           </div>
         )}

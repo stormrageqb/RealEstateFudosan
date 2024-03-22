@@ -8,7 +8,7 @@ const realEstateSchema = new mongoose.Schema({
     },
     address: {
         zipCode: {
-            type: Number,
+            type: String,
         },
         province: {
             type: String,

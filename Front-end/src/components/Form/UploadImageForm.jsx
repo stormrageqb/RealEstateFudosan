@@ -59,6 +59,7 @@ const UploadImageForm = ({
     if (window.confirm("このファイルを削除してもよろしいですか？")) {
       const result = selectedfiles.filter((data) => data.id !== id);
       SetSelectedfiles(result);
+      
     } else {
       // alert('No');
     }

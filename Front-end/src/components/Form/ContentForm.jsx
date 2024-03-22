@@ -20,7 +20,7 @@ export default function ContentForm(props) {
         <p className="text-[20px]">物件のウリとイマイチなところ</p>
         <div className="pt-[13px]">
           <textarea
-            required={true}
+            
             name="content"
             id=""
             cols="60"
@@ -32,7 +32,7 @@ export default function ContentForm(props) {
         <p className="text-[20px]">これまでの経緯と今の状況</p>
         <div className="pt-[13px]">
           <textarea
-            required={true}
+            
             name="content"
             id=""
             cols="60"

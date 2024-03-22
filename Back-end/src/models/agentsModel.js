@@ -25,7 +25,7 @@ const agentsSchema = new mongoose.Schema({
   },
   address: {
     zipCode: {
-      type: Number,
+      type: String,
     },
     province: {
       type: String,
@@ -41,7 +41,7 @@ const agentsSchema = new mongoose.Schema({
     type: String,
   },
   phoneNumber: {
-    type: Number,
+    type: String,
   },
   companyName: {
     type: String,

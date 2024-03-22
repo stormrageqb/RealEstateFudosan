@@ -74,7 +74,8 @@ const PostAgentPage = () => {
   const [lastNameGanji, setLastNameGanji] = useState("");
   const [content, setContent] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
-
+  const [isShow, setIsShow] = useState("false")
+ 
   const handleUploadDataArray = (data) => {
     setUploadDataArray(data);
   };
@@ -98,17 +99,35 @@ const PostAgentPage = () => {
     // Update the state with the new array
     setPostalNumber(updatedPostalNumber);
   };
+  const privacyDataArray = [firstNameGana, firstNameGanji, lastNameGana, role, phoneNumber, postalNumber, province, city, street];
+  useEffect(() => {
+    const isFormComplete =
+      firstNameGana.trim().length !== 0 &&
+      firstNameGanji.trim().length !== 0 &&
+      lastNameGana.trim().length !== 0 &&
+      lastNameGanji.trim().length !== 0 &&
+      role!== 0 &&
+      phoneNumber[0] !== null &&
+      phoneNumber[1] !== null &&
+      phoneNumber[2] !== null &&
+      postalNumber[0] !== null &&
+      postalNumber[1] !== null &&
+      province !== '' &&
+      city.trim().length !== 0 &&
+      street.trim().length !== 0;
+  
+    setIsShow(isFormComplete ? "true" : "false");
+  }, [privacyDataArray]);
+
   const newId = cookies.user._id;
-  const newphoneNumber = parseInt(
-    (phoneNumber[0] ? phoneNumber[0].toString() : "") +
+  const newphoneNumber =
+      (phoneNumber[0] ? phoneNumber[0].toString() : "") +
       (phoneNumber[1] ? phoneNumber[1].toString() : "") +
-      (phoneNumber[2] ? phoneNumber[2].toString() : "")
-  );
-  const newpostalNumber = parseInt(
-    (postalNumber[0] ? postalNumber[0].toString() : "") +
+      (phoneNumber[2] ? phoneNumber[2].toString() : "");
+  const newpostalNumber = 
+      (postalNumber[0] ? postalNumber[0].toString() : "") +
       (postalNumber[1] ? postalNumber[1].toString() : "") +
-      (postalNumber[2] ? postalNumber[2].toString() : "")
-  );
+      (postalNumber[2] ? postalNumber[2].toString() : "");
   const agentName = {
     firstNameGana: firstNameGana,
     lastNameGana: lastNameGana,
@@ -137,15 +156,69 @@ const PostAgentPage = () => {
     e.preventDefault();
     setValidationMessage("");
 
+    if (!firstNameGana || firstNameGana.trim().length === 0) 
+      return setValidationMessage("名前を正しく入力してください。");
+    
+    if (!firstNameGanji || firstNameGanji.trim().length === 0) 
+      return setValidationMessage("名前を正しく入力してください。");
+    
+    if (!lastNameGana || lastNameGana.trim().length === 0) 
+      return setValidationMessage("名前を正しく入力してください。");
+    
+    if (!lastNameGanji || lastNameGanji.trim().length === 0) 
+      return setValidationMessage("名前を正しく入力してください。");
+
+    if (!companyName || companyName.trim().length === 0) 
+      return setValidationMessage("会社名を正しく入力してください。");
+    
     if (!email.includes("@"))
       return setValidationMessage("メールアドレスを正しく入力してください。");
-    // if(Math.abs(phoneNumber[0]).toString().trim().length > 3 || Math.abs(phoneNumber[0]).toString().trim().length < 2
-    //     || Math.abs(phoneNumber[1]).toString().trim().length > 4 || Math.abs(phoneNumber[1]).toString().trim().length < 2
-    //     || Math.abs(phoneNumber[2]).toString().trim().length !== 4 )
-    //     return setValidationMessage("電話番号を正確に入力してください！");
-    // if(Math.abs(postalNumber[0]).toString().trim().length !== 3 || Math.abs(postalNumber[1]).toString().trim().length !== 4 )
-    //     return setValidationMessage("郵便番号を正しく入力してください!");
+
+    if (role === '') 
+      return setValidationMessage("役割を選択してください。");
+
+    if ((typeof (phoneNumber[0]) === 'undefined') || (phoneNumber[0] === null)) {
+      return setValidationMessage("電話番号を入力してください。")
+    }
+    if ((typeof (phoneNumber[1]) === 'undefined') || (phoneNumber[1] === null)) {
+      return setValidationMessage("電話番号を入力してください。")
+    }
+    if ((typeof (phoneNumber[2]) === 'undefined') || (phoneNumber[2] === null)) {
+      return setValidationMessage("電話番号を入力してください。")
+    }
+    
+    if((phoneNumber[0]).toString().trim().length > 3 || (phoneNumber[0]).toString().trim().length < 2
+        || (phoneNumber[1]).toString().trim().length > 4 || (phoneNumber[1]).toString().trim().length < 2
+        || (phoneNumber[2]).toString().trim().length !== 4 )
+      return setValidationMessage("電話番号を正確に入力してください！");
+
+    if ((typeof (postalNumber[0]) === 'undefined') || (postalNumber[0] === null)) {
+      return setValidationMessage("郵便番号を入力してください。")
+    }
+    if ((typeof (postalNumber[1]) === 'undefined') || (postalNumber[1] === null)) {
+      return setValidationMessage("郵便番号を入力してください。")
+    }
+    
+    if((postalNumber[0]).toString().trim().length !== 3 || (postalNumber[1]).toString().trim().length !== 4 )
+      return setValidationMessage("郵便番号を正しく入力してください!");
+
+    if (province === '') 
+      return setValidationMessage("都道府県を選択してください。");
+  
+    if (!city || city.trim().length === 0) 
+      return setValidationMessage("市区町村を入力してください。");
+  
+    if (!street || street.trim().length === 0) 
+      return setValidationMessage("町名番地を入力してください。");
+
+    if (!content || content.trim().length === 0) 
+    return setValidationMessage("投稿内容を入力してください。");
+
+    if (uploadDataArray.length === 0) 
+    return setValidationMessage("画像ファイルをアップロードしてください。");
+  
     try {
+
       const formData = new FormData();
       // Append other form data
       formData.append("agentInfo", JSON.stringify(agentData));
@@ -206,7 +279,7 @@ const PostAgentPage = () => {
                     <span>(姓)</span>
                     <input
                       placeholder="例:下保木"
-                      required={true}
+                      
                       name="lastNameGanji"
                       value={lastNameGanji}
                       className="w-[80px] sm:w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md text-sm sm:text-base"
@@ -218,7 +291,7 @@ const PostAgentPage = () => {
                     <span>(せい)</span>
                     <input
                       placeholder="例:しもほき"
-                      required={true}
+                      
                       name="lastNameGana"
                       value={lastNameGana}
                       className="w-[80px] sm:w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md text-sm sm:text-base"
@@ -232,7 +305,7 @@ const PostAgentPage = () => {
                     <span>(名)</span>
                     <input
                       placeholder="例:虎史"
-                      required={true}
+                      
                       name="firstNameGanji"
                       value={firstNameGanji}
                       className="w-[80px] sm:w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md text-sm sm:text-base"
@@ -244,7 +317,7 @@ const PostAgentPage = () => {
                     <span>(めい)</span>
                     <input
                       placeholder="例:こし"
-                      required={true}
+                      
                       name="firstNameGana"
                       value={firstNameGana}
                       className="w-[80px] sm:w-[130px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md text-sm sm:text-base"
@@ -260,7 +333,7 @@ const PostAgentPage = () => {
               <NecessaryTag content={"会社名"} />
 
               <input
-                required={true}
+                
                 type="text"
                 className="w-full sm:w-[445px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
                 onChange={(e) => setCompanyName(e.target.value)}
@@ -272,7 +345,7 @@ const PostAgentPage = () => {
 
               <input
                 placeholder="例:hoshi@gmail.com"
-                required={true}
+                
                 value={email}
                 type="text"
                 className="w-full sm:w-[445px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
@@ -286,7 +359,7 @@ const PostAgentPage = () => {
               <select
                 className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-full sm:w-[445px] "
                 onChange={(event) => setRole(event.target.value)}
-                required={true}
+                
                 defaultValue={value}
               >
                 <option className="text-[16px]" value="">
@@ -297,6 +370,7 @@ const PostAgentPage = () => {
                 </option>
                 <option className="text-[16px]" value="司法書士">
                   &nbsp;司法書士
+
                 </option>
                 <option className="text-[16px]" value="投資家">
                   &nbsp;投資家
@@ -309,7 +383,7 @@ const PostAgentPage = () => {
               <div className="flex items-center w-full justify-between sm:w-[445px]">
                 <input
                   placeholder="例:092"
-                  required={true}
+                  
                   type="number"
                   className="w-[25%] sm:w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
                   value={phoneNumber[0] || ""}
@@ -318,7 +392,7 @@ const PostAgentPage = () => {
                 <GoHorizontalRule className="text-3xl font-semibold" />
                 <input
                   placeholder="例:918"
-                  required={true}
+                  
                   type="number"
                   className="w-[25%] sm:w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
                   value={phoneNumber[1] || ""}
@@ -327,7 +401,7 @@ const PostAgentPage = () => {
                 <GoHorizontalRule className="text-3xl font-semibold" />
                 <input
                   placeholder="例:0234"
-                  required={true}
+                  
                   type="number"
                   className="w-[25%] sm:w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
                   value={phoneNumber[2] || ""}
@@ -345,7 +419,7 @@ const PostAgentPage = () => {
                   </span>
                   <input
                     placeholder="例:818"
-                    required={true}
+                    
                     type="number"
                     className="w-[20%] sm:w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
                     value={postalNumber[0] || ""}
@@ -356,7 +430,7 @@ const PostAgentPage = () => {
                   <GoHorizontalRule className="text-3xl font-semibold" />
                   <input
                     placeholder="例:0424"
-                    required={true}
+                    
                     type="number"
                     className="w-[20%] sm:w-[99px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
                     value={postalNumber[1] || ""}
@@ -371,14 +445,14 @@ const PostAgentPage = () => {
                   <select
                     className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px]"
                     onChange={(event) => setProvince(event.target.value)}
-                    required={true}
+                    
                     defaultValue={province}
                   >
                     <option className="text-[16px]" value="">
                       &nbsp;
                     </option>
                     {PROVINCE.map((province, index) => (
-                      <option className="text-[16px]" value={province}>
+                      <option className="text-[16px]" key={index} value={province}>
                         &nbsp;{province}
                       </option>
                     ))}
@@ -389,18 +463,18 @@ const PostAgentPage = () => {
                   <p className="text-[20px] ">市区町村</p>
                   <input
                     placeholder="例:町名番地"
-                    required={true}
+                    
                     type="text"
                     className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px]"
                     onChange={(e) => setCity(e.target.value)}
                   />
                 </div>
 
-                <div className=" flex items-center justify-between w-full">
+                <div className=" flex items-center justify-between w-full pb-[30px]">
                   <p className="text-[20px] ">町名番地</p>
                   <input
                     placeholder="例:6 Chome-19-19 Futsukaichikita"
-                    required={true}
+                    
                     type="text"
                     className="border-[1px] focus:outline-none focus:border-blue-500 p-1 rounded-md border-black w-[272px]"
                     onChange={(e) => setStreet(e.target.value)}
@@ -408,53 +482,59 @@ const PostAgentPage = () => {
                 </div>
               </div>
             </div>
+            
+            {
+              isShow === "true" ? (<div className=" lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
 
-            <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
-              <NecessaryTag content={"投稿内容"} />
+              <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
+                <NecessaryTag content={"投稿内容"} />
 
-              <div className="flex">
-                <textarea
-                  type="text"
-                  className="w-full sm:w-[445px] h-[140px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
-                  onChange={(e) => setContent(e.target.value)}
+                <div className="flex">
+                  <textarea
+                    type="text"
+                    className="w-full sm:w-[445px] h-[140px] border-[1px] focus:outline-none focus:border-blue-500 p-1 border-black rounded-md"
+                    onChange={(e) => setContent(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4 pt-[20px] lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
+                <NecessaryTag content={"画像"} />
+                <UploadImageForm
+                  title="資格コピー"
+                  button="資格のコピーをアップロード"
+                  width1={"w-[800px]"}
+                  width2={"w-[300px]"}
+                  gap={"gap-[35px]"}
+                  onDataArrayFromChild={handleUploadDataArray}
                 />
               </div>
-            </div>
-
-            <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start w-[90%] sm:w-[445px] lg:w-full">
-              <NecessaryTag content={"投稿内容"} />
-              <UploadImageForm
-                title="資格コピー"
-                button="資格のコピーをアップロード"
-                width1={"w-[800px]"}
-                width2={"w-[300px]"}
-                gap={"gap-[35px]"}
-                onDataArrayFromChild={handleUploadDataArray}
-              />
-            </div>
-            <div className="flex justify-center">
-              <ConditionForm onDataArrayFromChild={handleconditionDataArray} />
-            </div>
-            <p className="text-center pt-[20px]">{validationMessage}</p>
-            <div className="flex justify-center pt-[105px] pb-[170px]">
-              {conditionData ? (
-                <button
-                  type="submit"
-                  className="bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
-                  disabled={!conditionData}
-                >
-                  提出
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  className=" bg-gray-300 text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
-                  disabled={!conditionData}
-                >
-                  提出
-                </button>
-              )}
-            </div>
+              <div className="flex justify-center">
+                <ConditionForm onDataArrayFromChild={handleconditionDataArray} />
+              </div>
+              <p className="text-center pt-[20px] text-[24px] text-yellow-700">{validationMessage}</p>
+              <div className="flex justify-center pt-[105px] pb-[170px]">
+                {conditionData ? (
+                  <button
+                    type="submit"
+                    className="bg-[#2A6484] text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
+                    disabled={!conditionData}
+                  >
+                    提出
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className=" bg-gray-300 text-white px-[115px] py-[14px] text-[24px] rounded-[20px]"
+                    disabled={!conditionData}
+                  >
+                    提出
+                  </button>
+                )}
+              </div>
+            </div>) :" " 
+            }
+            
           </div>
         </form>
       </div>

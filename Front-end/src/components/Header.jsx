@@ -75,16 +75,17 @@ const Header = () => {
   }, [cookies.token]);
   return (
     <>
-      <div className="hidden md:block w-full h-[60px] py-5 bg-[#32769b] box-border sticky top-0 z-[10000] font-medium">
-        <div className="max-w-[1600px] text-center my-0 mx-auto">
-          {/* <div className='text-[44px] leading-[10px] float-left text-white font-medium ml-[100px]'><Link to='/dashboard' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ふどうさん<span className='text-[28px] ml-2 font-medium'>市場</span></Link></div> */}
-
+      <div className=" hidden lg:block w-full h-[60px] py-5 bg-[#32769b] box-border sticky top-0 z-[10000] font-medium">
+        
+        <div className="relative max-w-[1600px] text-center my-0 mx-auto">      
+          <div className="hidden lg:block absolute right-32 top-[-30px] text-white">不動産を直接売り買いする人たちの掲示板「ふどうさん&nbsp;市場」</div>
+          <div className='text-[35px] leading-[10px] float-left text-white font-medium pl-32'><Link to='/dashboard' className = 'text-current no-underline transition-all duration-75 hover:text-white/40'>ふどうさん<span className='text-[28px] ml-2 font-medium'>市場</span></Link></div>
           <div className="float-right mr-[10px]">
             <div
               className=" inline-block text-[18px] leading-[40px] text-white px-3 cursor-pointer hover:text-black"
-              onClick={() => history.push("/")}
+              onClick={() => history.push("/introduce")}
             >
-              ホームページ
+              案内
             </div>
             {isAdmin === false && (
               <div
@@ -240,13 +241,13 @@ const Header = () => {
         </div>
       </div>
       <div
-        className="sticky top-0 z-[10000] flex justify-between md:hidden py-3 px-6 bg-white border-b-2 border-b-slate-900"
+        className="sticky top-0 z-[10000] flex justify-between lg:hidden py-3 px-6 bg-white border-b-2 border-b-slate-900"
         // onClick={() => setIsNavOpen((prev) => !prev)}
       >
         {/* <span className="block h-1 w-8 animate-pulse bg-black/80"></span>
         <span className="block h-1 w-8 animate-pulse bg-black/80"></span>
         <span className="block h-1 w-8 animate-pulse bg-black/80"></span> */}
-        <div className="text-2xl font-semibold">ロゴ</div>
+        <div className="text-xl font-semibold">ふどうさん&nbsp;市場</div>
         <GiHamburgerMenu className="block w-10 text-3xl" onClick={handleHamburgerClicked}/>
       </div>
     </>
